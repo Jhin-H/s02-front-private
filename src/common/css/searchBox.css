@@ -1,0 +1,73 @@
+    .searchBox{
+            
+        margin-top: 100px;
+        width:100%;
+    }
+
+    .layer1{
+
+        width:100%;
+        display:flex;
+       
+    }
+
+    .layer2{
+
+        width:100%;
+        margin-top:30px;
+        display:flex;
+    }
+    
+
+    .layer2-icon{
+
+        width:100%;
+        margin-top:30px;
+        display:flex;
+        justify-content: space-between;
+
+    }
+
+    .layer3{
+
+        width:100%;
+        margin-top:30px;
+        display:flex;
+   
+    }
+
+    .layer3-icon{
+
+        width:100%;
+        margin-top:30px;
+        display:flex;
+        justify-content:space-between;
+
+    }
+
+    .iconWrap-left{
+
+        display:flex;
+
+    }
+
+    .iconWrap-right {
+
+        display:flex;
+
+    }
+
+    input{
+        
+        margin-right:30px;
+
+    }
+
+    
+    .wave{
+
+        font-size:22px;
+        margin-right: 5px;
+
+    }
+    
