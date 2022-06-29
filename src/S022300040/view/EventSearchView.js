@@ -27,7 +27,13 @@ function EventSearchView (props) {
        
             <div className="searchBox">
                 <div className="layer1">
-                    <Input/><Input/><SelectBox/><ImgSecondaryBtn/>
+                    <Input
+                        placeholder="행사명"
+                    />
+                    <Input
+                        placeholder="운영자"
+                    />
+                    <SelectBox/><ImgSecondaryBtn/>
                 </div>
                 <div className="layer2">
                    

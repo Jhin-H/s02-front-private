@@ -74,37 +74,45 @@ const Container = styled.div`
 
 const BudgetTable = () => {
     return (
+
+
         <Container>
 
-            
+            <div className="tableInfo">
 
-
-            <div class="tableInfo">
-
-                <p class="budgetInfo">2022년 예산액 : <span>1300만원</span></p>
-                <p class="priceInfo">금액단위 : 만원</p>
+                <p className="budgetInfo">2022년 예산액 : <span>1300만원</span></p>
+                <p className="priceInfo">금액단위 : 만원</p>
 
             </div>
             
             <table>
 
-
-            <th class="filled">선택</th>
-            <th class="filled">번호</th>
-            <th class="filled">부서명</th>
-            <th class="filled">팀장</th>
-            <th class="filled">총무</th>
-            <th class="filled">사역명</th>
-            <th class="filled">예산액</th>
-            <th class="filled">예산비율(%)</th>
-            <th class="filled">예산잔액</th>
-            <th class="filled">인원수</th>
-            <th class="filled">비고</th>
+            <thead>
 
                 <tr>
-                    <td><input class="checkbox" type="radio"></input></td>
+
+                    <th className="filled">선택</th>
+                    <th className="filled">번호</th>
+                    <th className="filled">부서명</th>
+                    <th className="filled">팀장</th>
+                    <th className="filled">총무</th>
+                    <th className="filled">사역명</th>
+                    <th className="filled">예산액</th>
+                    <th className="filled">예산비율(%)</th>
+                    <th className="filled">예산잔액</th>
+                    <th className="filled">인원수</th>
+                    <th className="filled">비고</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td><input className="checkbox" type="radio"></input></td>
                     <td>1</td>
-                    <td rowspan="6" class="link"><a href="../departmentBudget/departmentBudget.html">뉴웨이브공동체</a></td>
+                    <td rowspan="6" className="link"><a href="../departmentBudget/departmentBudget.html">뉴웨이브공동체</a></td>
                     <td rowspan="6">팀장A</td>
                     <td rowspan="6">총무A</td>
                     <td>총괄운영비</td>
@@ -118,7 +126,7 @@ const BudgetTable = () => {
 
 
                 <tr>
-                    <td><input class="checkbox" type="radio"></input></td>
+                    <td><input className="checkbox" type="radio"></input></td>
                     <td>2</td>
                     <td>예배비</td>
                     <td>100</td>
@@ -129,7 +137,7 @@ const BudgetTable = () => {
                 </tr>
                 
                 <tr>
-                    <td><input class="checkbox" type="radio"></input></td>
+                    <td><input className="checkbox" type="radio"></input></td>
                     <td>3</td>
                     <td>수련회비</td>
                     <td>100</td>
@@ -140,7 +148,7 @@ const BudgetTable = () => {
                 </tr>
                 
                 <tr>
-                    <td><input class="checkbox" type="radio"></input></td>
+                    <td><input className="checkbox" type="radio"></input></td>
                     <td>4</td>
                     <td>선교비</td>
                     <td>100</td>
@@ -151,7 +159,7 @@ const BudgetTable = () => {
                 </tr>
                 
                 <tr>
-                    <td><input class="checkbox" type="radio"></input></td>
+                    <td><input className="checkbox" type="radio"></input></td>
                     <td>5</td>
                     <td>청년1부</td>
                     <td>100</td>
@@ -163,7 +171,7 @@ const BudgetTable = () => {
                 
                 
                 <tr>
-                    <td><input class="checkbox" type="radio"></input></td>
+                    <td><input className="checkbox" type="radio"></input></td>
                     <td>6</td>
                     <td>청년2부</td>
                     <td>100</td>
@@ -175,15 +183,17 @@ const BudgetTable = () => {
                 
                 
                 <tr>
-                    <td><input class="checkbox" type="radio"></input></td>
+                    <td><input className="checkbox" type="radio"></input></td>
                     <td>7</td>
-                    <td colspan="4" class="filled">소개</td>
-                    <td class="filled">100</td>
-                    <td class="filled">8%</td>
-                    <td class="filled">20</td>
-                    <td class="filled">80</td>
+                    <td colspan="4" className="filled">소개</td>
+                    <td className="filled">100</td>
+                    <td className="filled">8%</td>
+                    <td className="filled">20</td>
+                    <td className="filled">80</td>
                     <td></td>
                 </tr>
+                
+            </tbody>
                 
 
 

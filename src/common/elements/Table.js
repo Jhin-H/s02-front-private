@@ -37,12 +37,22 @@ const Table = () => {
         <Container>
 
             <table>
-                <th className="tableHead">번호</th>
-                <th className="tableHead">행사명</th>
-                <th className="tableHead">이름</th>
-                <th className="tableHead">핸드폰 번호</th>
-                <th className="tableHead">출입일시</th>
+
+                <thead>
+
+                    <tr>
+
+                        <th className="tableHead">번호</th>
+                        <th className="tableHead">행사명</th>
+                        <th className="tableHead">이름</th>
+                        <th className="tableHead">핸드폰 번호</th>
+                        <th className="tableHead">출입일시</th>
+                    
+                    </tr>
+
+                </thead>
                 
+                <tbody>
                     <tr>
                         <td className="tableData">1</td>
                         <td className="tableData">A행사</td>
@@ -83,6 +93,8 @@ const Table = () => {
                         <td className="tableData">010-0000-0000</td>
                         <td className="tableData">2022.01.01 ~ 2022.02.01</td>
                     </tr>
+
+                </tbody>
                     
                    
             </table>

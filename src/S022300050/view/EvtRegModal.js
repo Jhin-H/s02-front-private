@@ -1,10 +1,31 @@
 import React from 'react';
 import Input from '../../common/elements/Input';
-import InputDate from "../../common/elements/InputDate"
-import SelectBox from "../../common/elements/SelectBox";
+import Textarea from '../../common/elements/Textarea';
 import PrimaryBtn from "../../common/elements/PrimaryBtn"
 import SecondaryBtn from "../../common/elements/SecondaryBtn"
 import "../../common/css/modal.css";
+import styled from 'styled-components';
+
+
+
+const EvtRegModalWrapper = styled.div`
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+
+    .date-input-wrapper {
+        display:flex;
+        align-items:baseline;
+    }
+    .event-input-wrapper {
+        display:flex;
+        align-items:baseline;
+    }
+    .email-input-wrapper {
+        display:flex;
+        align-items:baseline;
+    }
+`;
 
 function EvtRegModal({closeModal})   {
     
@@ -15,56 +36,68 @@ function EvtRegModal({closeModal})   {
     
             <div className='modalBox'>
 
-                <div class="wrap">
-                        <div class="inner">
+            <EvtRegModalWrapper>
+
+                        <div className="inner">
                             <h1>안녕하세요.</h1>
-                            <p class="subTitle">이곳에서 행사를 새로 등록하거나 수정할 수 있습니다.</p>
+                            <p className="subTitle">이곳에서 행사를 새로 등록하거나 수정할 수 있습니다.</p>
 
                             <div className='closeBtn' onClick={closeModal}>
-                                X
+                                <i className="fa-solid fa-xmark"></i>
                             </div>
                     
                         
 
                         <div className="form">
                             
-                            <label>행사명</label>
-                            <Input/>
+                            <Input
+                                label="행사명"
+                                placeholder="행사명"
+                            />
 
-                            <label>행사일자</label>
+                            <div className="date-input-wrapper">
 
-                            <div className="inputWrap">
-
-                                <InputDate/>
+                                <Input
+                                    label="행사일자"
+                                    type="date"
+                                    data-placeholder="행사일자"
+                                    required aria-required="true"
+                                />
                                 <div className='wave'>~</div>
-                                <InputDate/>
+                                <Input
+                                    
+                                    type="date"
+                                    data-placeholder="행사일자"
+                                    required aria-required="true"
+                                />
 
                             </div>
 
                             
-                            <div className='inputWrap'>
+                            <div className='event-input-wrapper'>
 
-                                <div className='inputWrap'>
-                                    <label>행사장소</label>
-                                    <Input/>
-                                </div>
-                                    <label>운영자</label>
-                                <Input/>
+                              
+                                <Input
+                                    label="행사장소"
+                                    placeholder="행사장소"
+                                />
+                                    
+                                    
+                                <Input
+                                    label="운영자"
+                                    placeholder="운영자"
+                                
+                                />
                             
                             </div>
 
-                            
+                            {/* <Textarea/> */}
                         
-                            <label>이름</label>
-                            <Input/>
-                            <lable>핸드폰</lable>
-                            <div className="inputWrap"><InputDate/><InputDate/></div>
-                            <label>E-mail</label>
-                            <div className="inputWrap"><Input/></div><SelectBox/>
+                            
 
-                        </div> 
+                        </div>  
 
-                            <div class="btnWrap">
+                            <div className="btnWrap">
                                 <div>
                                     <PrimaryBtn/>
                                 </div>
@@ -79,10 +112,10 @@ function EvtRegModal({closeModal})   {
 
                     </div>
                     
-                </div>
+                
 
                     
-                
+                </EvtRegModalWrapper>
             </div>
         </div>
     );

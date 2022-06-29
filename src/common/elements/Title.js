@@ -29,8 +29,8 @@ const Title = () => {
     return (
         <Container>
             <div className="titleWrap">
-              <p class="mainTitle">타이틀</p>
-              <p class="subTitle">서브타이틀을 입력해주세요</p>
+              <p className="mainTitle">타이틀</p>
+              <p className="subTitle">서브타이틀을 입력해주세요</p>
             </div>
         </Container>
     )

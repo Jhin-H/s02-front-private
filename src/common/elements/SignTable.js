@@ -55,19 +55,30 @@ const SignTable = () => {
         <Container>
 
             <table>
-                <th>선택</th>
-                <th>번호</th>
-                <th>등록일자</th>
-                <th>사용일자</th>
-                <th>부서명</th>
-                <th>등록자</th>
-                <th>결재자</th>
-                <th>진행상태</th>
-                <th>제목</th>
-                <th>사용금액</th>
+
+              <thead>
+
+                <tr>
+
+                  <th>선택</th>
+                  <th>번호</th>
+                  <th>등록일자</th>
+                  <th>사용일자</th>
+                  <th>부서명</th>
+                  <th>등록자</th>
+                  <th>결재자</th>
+                  <th>진행상태</th>
+                  <th>제목</th>
+                  <th>사용금액</th>
+                  
+                </tr>
+
+              </thead>
                 
+              <tbody>
+
                     <tr>
-                        <td><input class="checkbox" type="radio"></input></td>
+                        <td><input className="checkbox" type="radio"></input></td>
                         <td>1</td>
                         <td>2022.01.01</td>
                         <td>2022.01.01</td>
@@ -81,7 +92,7 @@ const SignTable = () => {
                     
                 
                     <tr>
-                        <td><input class="checkbox" type="radio"></input></td>
+                        <td><input className="checkbox" type="radio"></input></td>
                         <td>2</td>
                         <td>2022.01.01</td>
                         <td>2022.01.01</td>
@@ -95,7 +106,7 @@ const SignTable = () => {
                     
                 
                     <tr>
-                        <td><input class="checkbox" type="radio"></input></td>
+                        <td><input className="checkbox" type="radio"></input></td>
                         <td>3</td>
                         <td>2022.01.01</td>
                         <td>2022.01.01</td>
@@ -109,7 +120,7 @@ const SignTable = () => {
                     
                 
                     <tr>
-                        <td><input class="checkbox" type="radio"></input></td>
+                        <td><input className="checkbox" type="radio"></input></td>
                         <td>4</td>
                         <td>2022.01.01</td>
                         <td>2022.01.01</td>
@@ -123,7 +134,7 @@ const SignTable = () => {
                     
                 
                     <tr>
-                        <td><input class="checkbox" type="radio"></input></td>
+                        <td><input className="checkbox" type="radio"></input></td>
                         <td>5</td>
                         <td>2022.01.01</td>
                         <td>2022.01.01</td>
@@ -134,6 +145,8 @@ const SignTable = () => {
                         <td>부서식대</td>
                         <td>50,000원</td>
                     </tr>
+
+                  </tbody>
                     
                   
 

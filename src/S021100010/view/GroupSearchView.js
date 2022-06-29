@@ -5,44 +5,59 @@ import ImgPrimaryBtn from  "../../common/elements/ImgPrimaryBtn";
 import OrgRegModal from "../../S021100020/view/OrgRegModal";
 import "../../common/css/searchBox.css"
 
+import useModal from "../../common/hooks/useModal";
 
 function GroupSearchView (props) {
-
-    const [orgRegOpen, setOrgRegOpen] = useState(false) ;
     const {classes} = props ;
 
-    const onOrgRegOpenModal = () =>{
-        setOrgRegOpen(true);
-    }
+    const { ModalPortal, closeModal, openModal } = useModal();
 
-    const onOrgRegCloseModal = () =>{
-        alert("onOrgRegCloseModal start ============> ") ;
-        alert(orgRegOpen)
-        setOrgRegOpen(false);
-        alert(orgRegOpen)
-    }
+    const onSubmitModal = (callBackData) => {
+        alert(callBackData);
+    };
 
 
     return (
        
             <div className="searchBox">
+
                 <div className="layer1">
-                    <Input/><Input/><ImgSecondaryBtn/>
+                    
+                    <Input
+
+                        placeholder="단체명"
+                
+                    />
+                    <Input
+
+                        placeholder="대표자"
+
+                    />
+                    <ImgSecondaryBtn/>
                 </div>
+
                 <div className="layer2-icon">
+
                     <div className="iconWrap-left">
-                        <div onClick={onOrgRegOpenModal}>
-                            <ImgPrimaryBtn iconText={'등록'}/>
-                            {orgRegOpen && <OrgRegModal  closeModal={onOrgRegCloseModal} /> }
-                        </div>
+
+                        <ImgPrimaryBtn iconText={'등록'} onClick={openModal}/>
+                        
                         
                         <ImgPrimaryBtn iconText={"수정"}/>
                         <ImgPrimaryBtn iconText={"삭제"}/>
                     </div>
+
                     <div className="iconWrap-right">
                         <ImgPrimaryBtn iconText={"다운로드"}/>
                     </div>
+
                 </div>
+                <ModalPortal>
+                    <OrgRegModal
+                        onSubmitModal={onSubmitModal}
+                        closeModal={closeModal}
+                    />
+                </ModalPortal>
             </div>
     );
 }

@@ -73,22 +73,22 @@ const Header = () => {
 
         <HeaderContainer>
 
-            <div class="headerWrap">
+            <div className="headerWrap">
 
-                <div class="headerInner">
+                <div className="headerInner">
                   
 
                     <div className="topLogo">
                             <img src="/img/logo3-w.png" alt="로고"></img>
                     </div>
 
-                      <div class="user-wrap">
+                      <div className="user-wrap">
                       
-                       <div class="userProfile"></div>
-                        <p class="userName">username</p>
+                       <div className="userProfile"></div>
+                        <p className="userName">username</p>
                           
-                          <div class="login"><i class="fa-solid fa-user"></i>로그인</div>
-                          <div class="logout"><i class="fa-solid fa-power-off"></i>로그아웃</div>
+                          <div className="login"><i className="fa-solid fa-user"></i>로그인</div>
+                          <div className="logout"><i className="fa-solid fa-power-off"></i>로그아웃</div>
                       </div>
 
               </div>

@@ -41,7 +41,7 @@ const Icon = styled.div`
 
 `;
 
-const ImgPrimaryBtn = ({ iconText }) => {
+const ImgPrimaryBtn = ({ iconText, ...props}) => {
 
     let imgSrc = '' ;
     if(iconText === '등록'){
@@ -67,7 +67,7 @@ const ImgPrimaryBtn = ({ iconText }) => {
     
 
     return (
-        <Icon>            
+        <Icon {...props}>           
             <img src={imgSrc}></img>
             <p>{iconText}</p>
         </Icon>

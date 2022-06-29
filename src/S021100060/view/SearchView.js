@@ -37,8 +37,12 @@ const SearchView = () => {
             <div className="searchBox">
 
                 <div className="layer1">
-                    <Input/>
-                    <Input/>
+                    <Input
+                        placeholder="부서명"
+                    />
+                    <Input
+                        placeholder="팀장"
+                    />
                     <ImgSecondaryBtn/>
                 </div>
 

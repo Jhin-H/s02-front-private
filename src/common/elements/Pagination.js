@@ -50,15 +50,15 @@ const Pagination = () => {
     return (
         <Container>
             <div className="pagination">
-                <i class="fa-solid fa-angle-left"></i>
+                <i className="fa-solid fa-angle-left"></i>
 
-                    <div class="pgNumber"><a href="">1</a></div>
-                    <div class="pgNumber"><a href="">2</a></div>
-                    <div class="pgNumber"><a href="">3</a></div>
-                    <div class="pgNumber"><a href="">4</a></div>
-                    <div><i class="fa-solid fa-ellipsis"></i></div>
-                    <div class="pgNumber"><a href="">10</a></div>
-                    <i class="fa-solid fa-angle-right"></i>
+                    <div className="pgNumber"><a href="">1</a></div>
+                    <div className="pgNumber"><a href="">2</a></div>
+                    <div className="pgNumber"><a href="">3</a></div>
+                    <div className="pgNumber"><a href="">4</a></div>
+                    <div><i className="fa-solid fa-ellipsis"></i></div>
+                    <div className="pgNumber"><a href="">10</a></div>
+                    <i className="fa-solid fa-angle-right"></i>
 
             </div>
         </Container>
