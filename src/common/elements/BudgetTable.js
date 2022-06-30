@@ -110,7 +110,7 @@ const BudgetTable = () => {
             <tbody>
 
                 <tr>
-                    <td><input className="checkbox" type="radio"></input></td>
+                    <td><input className="checkbox" type="checkbox"></input></td>
                     <td>1</td>
                     <td rowspan="6" className="link"><a href="../departmentBudget/departmentBudget.html">뉴웨이브공동체</a></td>
                     <td rowspan="6">팀장A</td>
@@ -126,7 +126,7 @@ const BudgetTable = () => {
 
 
                 <tr>
-                    <td><input className="checkbox" type="radio"></input></td>
+                    <td><input className="checkbox" type="checkbox"></input></td>
                     <td>2</td>
                     <td>예배비</td>
                     <td>100</td>
@@ -137,7 +137,7 @@ const BudgetTable = () => {
                 </tr>
                 
                 <tr>
-                    <td><input className="checkbox" type="radio"></input></td>
+                    <td><input className="checkbox" type="checkbox"></input></td>
                     <td>3</td>
                     <td>수련회비</td>
                     <td>100</td>
@@ -148,7 +148,7 @@ const BudgetTable = () => {
                 </tr>
                 
                 <tr>
-                    <td><input className="checkbox" type="radio"></input></td>
+                    <td><input className="checkbox" type="checkbox"></input></td>
                     <td>4</td>
                     <td>선교비</td>
                     <td>100</td>
@@ -159,7 +159,7 @@ const BudgetTable = () => {
                 </tr>
                 
                 <tr>
-                    <td><input className="checkbox" type="radio"></input></td>
+                    <td><input className="checkbox" type="checkbox"></input></td>
                     <td>5</td>
                     <td>청년1부</td>
                     <td>100</td>
@@ -171,7 +171,7 @@ const BudgetTable = () => {
                 
                 
                 <tr>
-                    <td><input className="checkbox" type="radio"></input></td>
+                    <td><input className="checkbox" type="checkbox"></input></td>
                     <td>6</td>
                     <td>청년2부</td>
                     <td>100</td>
@@ -183,7 +183,7 @@ const BudgetTable = () => {
                 
                 
                 <tr>
-                    <td><input className="checkbox" type="radio"></input></td>
+                    <td><input className="checkbox" type="checkbox"></input></td>
                     <td>7</td>
                     <td colspan="4" className="filled">소개</td>
                     <td className="filled">100</td>

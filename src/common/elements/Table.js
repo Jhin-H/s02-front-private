@@ -26,7 +26,7 @@ const Container = styled.div`
     }
 
 
-    tr:hover:not(:first-child){
+    tr:hover:not(thead>tr){
         
         background-color: #dcdcdc;
 }

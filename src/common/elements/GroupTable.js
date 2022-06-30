@@ -27,7 +27,7 @@ td{
  
 }
 
-tr:hover:not(:first-child){
+tr:hover:not(thead>tr){
   background-color: #dcdcdc;
 }
 
@@ -75,7 +75,7 @@ const GroupTable = () => {
               <tbody>
                 
                     <tr>
-                        <td><input className="checkbox" type="radio"></input></td>
+                        <td><input className="checkbox" type="checkbox"></input></td>
                         <td>1</td>
                         <td>A교회</td>
                         <td>대표자A</td>
@@ -85,7 +85,7 @@ const GroupTable = () => {
                     </tr>
                     
                     <tr>
-                        <td><input className="checkbox" type="radio"></input></td>
+                        <td><input className="checkbox" type="checkbox"></input></td>
                         <td>2</td>
                         <td>B교회</td>
                         <td>대표자B</td>
@@ -95,7 +95,7 @@ const GroupTable = () => {
                     </tr>
                     
                     <tr>
-                        <td><input className="checkbox" type="radio"></input></td>
+                        <td><input className="checkbox" type="checkbox"></input></td>
                         <td>3</td>
                         <td>C교회</td>
                         <td>대표자C</td>
@@ -105,7 +105,7 @@ const GroupTable = () => {
                     </tr>
                     
                     <tr>
-                        <td><input className="checkbox" type="radio"></input></td>
+                        <td><input className="checkbox" type="checkbox"></input></td>
                         <td>4</td>
                         <td>D교회</td>
                         <td>대표자D</td>
@@ -115,7 +115,7 @@ const GroupTable = () => {
                     </tr>
                     
                     <tr>
-                        <td><input className="checkbox" type="radio"></input></td>
+                        <td><input className="checkbox" type="checkbox"></input></td>
                         <td>5</td>
                         <td>E교회</td>
                         <td>대표자E</td>

@@ -27,7 +27,7 @@ td{
  
 }
 
-tr:hover:not(:first-child){
+tr:hover:not(thead>tr){
   background-color: #dcdcdc;
 }
 
@@ -42,10 +42,12 @@ tr:hover:not(:first-child){
         border-radius: 100%;
         background: #fbfbfb;
 }
+
 .checkbox:checked{
   background-color: rgb(50, 190, 166);
  
 }
+
 
 
 `;
@@ -78,7 +80,7 @@ const SignTable = () => {
               <tbody>
 
                     <tr>
-                        <td><input className="checkbox" type="radio"></input></td>
+                        <td><input className="checkbox" type="checkbox"></input></td>
                         <td>1</td>
                         <td>2022.01.01</td>
                         <td>2022.01.01</td>
@@ -92,7 +94,7 @@ const SignTable = () => {
                     
                 
                     <tr>
-                        <td><input className="checkbox" type="radio"></input></td>
+                        <td><input className="checkbox" type="checkbox"></input></td>
                         <td>2</td>
                         <td>2022.01.01</td>
                         <td>2022.01.01</td>
@@ -106,7 +108,7 @@ const SignTable = () => {
                     
                 
                     <tr>
-                        <td><input className="checkbox" type="radio"></input></td>
+                        <td><input className="checkbox" type="checkbox"></input></td>
                         <td>3</td>
                         <td>2022.01.01</td>
                         <td>2022.01.01</td>
@@ -120,7 +122,7 @@ const SignTable = () => {
                     
                 
                     <tr>
-                        <td><input className="checkbox" type="radio"></input></td>
+                        <td><input className="checkbox" type="checkbox"></input></td>
                         <td>4</td>
                         <td>2022.01.01</td>
                         <td>2022.01.01</td>
@@ -134,7 +136,7 @@ const SignTable = () => {
                     
                 
                     <tr>
-                        <td><input className="checkbox" type="radio"></input></td>
+                        <td><input className="checkbox" type="checkbox"></input></td>
                         <td>5</td>
                         <td>2022.01.01</td>
                         <td>2022.01.01</td>
