@@ -7,7 +7,9 @@ import EvtRegModal from "../../S022300050/view/EvtRegModal";
 import "../../common/css/searchBox.css"
 import useModal from "../../common/hooks/useModal";
 
+
 function EventSearchView (props) {
+    
     const {classes} = props ;
 
     const { ModalPortal, closeModal, openModal } = useModal();
