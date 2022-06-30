@@ -5,7 +5,6 @@ import SelectBox from "../../common/elements/SelectBox";
 import ImgPrimaryBtn from  "../../common/elements/ImgPrimaryBtn";
 import EvtRegModal from "../../S022300050/view/EvtRegModal";
 import "../../common/css/searchBox.css"
-
 import useModal from "../../common/hooks/useModal";
 
 function EventSearchView (props) {

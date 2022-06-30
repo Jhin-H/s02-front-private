@@ -13,6 +13,7 @@ const Container = styled.div`
         text-align: center;
         border-collapse: collapse;
     }
+
     .tableHead {
         font-weight: 500;
         font-size: 16pt;
@@ -29,11 +30,12 @@ const Container = styled.div`
     tr:hover:not(thead>tr){
         
         background-color: #dcdcdc;
-}
+    }
 `;
 
 const Table = () => {
     return (
+        
         <Container>
 
             <table>
