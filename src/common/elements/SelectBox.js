@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const SelectBoxContainer = styled.div`
     position:relative;
+    
     select{
         border-top: none;
         border-left: none;
@@ -20,6 +21,7 @@ const SelectBoxContainer = styled.div`
     }
 
     label {
+
         position:absolute;
         top:-35px;
     }

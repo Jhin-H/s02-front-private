@@ -7,21 +7,20 @@ const Container = styled.div`
     flex-direction:column;
     margin-right: 10px;
     margin-bottom: 10px;
-    
-textarea {
-    width: 300px;
-    height: 50px;
-    margin: 10px 0;
-    outline: none;
-}
+        
+    textarea {
+        width: 430px;
+        height: 50px;
+        margin: 10px 0;
+        outline: none;
+    }
 `;
 
-const Textarea = ( {label, icon, ...props} ) => {
+const Textarea = () => {
     return (
-        <Container iconExist={!!icon}>
-            <label>{label}</label>
-            <textarea style="resize: none;" placeholder="행사내용을 입력해주세요" {...props} />
-            <div className="icon-wrapper">{icon}</div>
+        <Container>
+            <label>행사내용</label>
+            <textarea placeholder="행사내용을 입력해주세요" />
         </Container>
     )
 };

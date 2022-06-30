@@ -1,11 +1,11 @@
 import React from 'react';
 import Input from '../../common/elements/Input';
-import Textarea from '../../common/elements/Textarea';
-import PrimaryBtn from "../../common/elements/PrimaryBtn"
-import SecondaryBtn from "../../common/elements/SecondaryBtn"
+import PrimaryBtn from "../../common/elements/PrimaryBtn";
+import SecondaryBtn from "../../common/elements/SecondaryBtn";
 import "../../common/css/modal.css";
 import styled from 'styled-components';
-
+import Textarea from "../../common/elements/Textarea";
+import SelectBox from '../../common/elements/SelectBox';
 
 
 const EvtRegModalWrapper = styled.div`
@@ -21,9 +21,25 @@ const EvtRegModalWrapper = styled.div`
         display:flex;
         align-items:baseline;
     }
-    .email-input-wrapper {
+    .attend-input-wrapper {
         display:flex;
         align-items:baseline;
+    }
+
+    .textarea-wrapper{
+        margin-top:-30px;
+        margin-bottom:30px;
+    }
+
+
+    input{
+
+        margin-right: 20px;
+
+    }
+
+    select{
+        margin-right: 30px;
     }
 `;
 
@@ -91,9 +107,27 @@ function EvtRegModal({closeModal})   {
                             
                             </div>
 
-                            {/* <Textarea/> */}
-                        
-                            
+                            <div className='textarea-wrapper'>
+
+                                <Textarea/>
+
+                            </div>
+
+                            <div className='attend-input-wrapper'>
+
+                                <SelectBox
+                                    label="참석여부"
+                                    placeholder="참석여부"/>
+                                
+                                <Input
+                                    label="종료일자"
+                                    type="date"
+                                    data-placeholder="종료일자"
+                                    required aria-required="true"/>
+
+                            </div>
+
+                           
 
                         </div>  
 

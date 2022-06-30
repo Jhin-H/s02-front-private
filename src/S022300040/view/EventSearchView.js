@@ -6,21 +6,17 @@ import ImgPrimaryBtn from  "../../common/elements/ImgPrimaryBtn";
 import EvtRegModal from "../../S022300050/view/EvtRegModal";
 import "../../common/css/searchBox.css"
 
+import useModal from "../../common/hooks/useModal";
 
 function EventSearchView (props) {
-
-    const [EvtRegOpen, setEvtRegOpen] = useState(false) ;
     const {classes} = props ;
 
-    const onEvtRegOpenModal = () =>{
-        setEvtRegOpen(true);
-    }
+    const { ModalPortal, closeModal, openModal } = useModal();
 
-    const onEvtRegCloseModal = () =>{
-        alert("onOrgRegCloseModal start ============> ") ;
-        setEvtRegOpen(false);
-       
-    }
+    const onSubmitModal = (callBackData) => {
+        alert(callBackData);
+    };
+
 
 
     return (
@@ -37,16 +33,18 @@ function EventSearchView (props) {
                 </div>
                 <div className="layer2">
                    
-                        <div onClick={onEvtRegOpenModal}>
-                            <ImgPrimaryBtn iconText={'등록'}/>
-                            {EvtRegOpen && <EvtRegModal  closeModal={onEvtRegCloseModal} /> }
-                        </div>
-                        
+                        <ImgPrimaryBtn iconText={'등록'}  onClick={openModal}/>
                         <ImgPrimaryBtn iconText={"수정"}/>
                         <ImgPrimaryBtn iconText={"삭제"}/>
                         <ImgPrimaryBtn iconText={"비용등록"}/>
                     
                 </div>
+                <ModalPortal>
+                    <EvtRegModal
+                        onSubmitModal={onSubmitModal}
+                        closeModal={closeModal}
+                    />
+                </ModalPortal>
             </div>
     );
 }
