@@ -32,7 +32,7 @@ const Container = styled.div`
 }
 
 
-.titleWrap{
+.main-title-Wrap{
     width: 750px;
     margin: 15% auto 0 auto;
    
@@ -89,7 +89,7 @@ const Home = () =>{
                 <div className="inner">
                     
 
-                    <div className="titleWrap">
+                    <div className="main-title-Wrap">
 
                         <p className="subTitle-top">Welcome</p>
 
