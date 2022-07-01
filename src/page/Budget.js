@@ -3,7 +3,6 @@ import "../common/css/page.css";
 import Header from "../common/Header";
 import BudgetContainer from "../S021100060/container/BudgetContainer";
 import Pagination from"../common/elements/Pagination";
-import Title from "../common/elements/Title";
 
 
 
@@ -18,8 +17,6 @@ const Budget = () =>{
                 <div className="inner">
 
                     <Header></Header>
-                    <Title/>
-
                     <BudgetContainer/>
                     
                     <div className="pagination">

@@ -4,11 +4,24 @@ import ImgSecondaryBtn from "../../common/elements/ImgSecondaryBtn";
 import Input from '../../common/elements/Input';
 import SelectBox from "../../common/elements/SelectBox";
 import ImgPrimaryBtn from  "../../common/elements/ImgPrimaryBtn"
+import MemRegModal from "../../S021100040/view/MemRegModal";
+import useModal from "../../common/hooks/useModal";
 
 
 
 
-const MembSearchView = () => {
+
+
+const MembSearchView = (props) => {
+
+    const {classes} = props ;
+
+    const { ModalPortal, closeModal, openModal } = useModal();
+
+    const onSubmitModal = (callBackData) => {
+        alert(callBackData);
+    };
+
     
 
     return (
@@ -44,7 +57,7 @@ const MembSearchView = () => {
                 <div className="layer3-icon">
 
                     <div className="iconWrap-left">
-                        <ImgPrimaryBtn iconText={'등록'}/>
+                        <ImgPrimaryBtn iconText={'등록'} onClick={openModal}/>
                         <ImgPrimaryBtn iconText={"수정"}/>
                         <ImgPrimaryBtn iconText={"삭제"}/>
                         <ImgPrimaryBtn iconText={"운영자등록"}/>
@@ -59,8 +72,15 @@ const MembSearchView = () => {
 
                 </div>
                
+                <ModalPortal>
+                    <MemRegModal
+                        onSubmitModal={onSubmitModal}
+                        closeModal={closeModal}
+                    />
+                </ModalPortal>
 
             </div>
+
 
   
     );

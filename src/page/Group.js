@@ -14,8 +14,6 @@ const Group = () =>{
                 <div className="inner">
 
                     <Header></Header>
-                    <Title/>
-
                     <GroupContainer/>
                     
                     <div className="pagination">

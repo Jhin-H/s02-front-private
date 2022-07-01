@@ -42,11 +42,6 @@ const Container = styled.div`
     }
 
 
-
-
-
-
-
     ::placeholder{
 
         text-align: center;
