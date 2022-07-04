@@ -39,7 +39,7 @@ function MemRegModal({ onSubmitModal, closeModal })   {
         <MemRegModalWrapper>
             <div class="inner">
                 <h1>안녕하세요.</h1>
-                <p class="subTitle">이곳에서 새로운 회원정보를 기입하여 단체를 새로 등록할 수 있습니다.</p>
+                <p class="modalSubTitle">이곳에서 새로운 회원정보를 기입하여 단체를 새로 등록할 수 있습니다.</p>
 
                 <div className='closeBtn' onClick={closeModal}>
                     <i class="fa-solid fa-xmark"></i>

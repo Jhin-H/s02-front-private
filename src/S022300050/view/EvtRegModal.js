@@ -56,7 +56,7 @@ function EvtRegModal({closeModal})   {
 
                         <div className="inner">
                             <h1>안녕하세요.</h1>
-                            <p className="subTitle">이곳에서 행사를 새로 등록하거나 수정할 수 있습니다.</p>
+                            <p className="modalSubTitle">이곳에서 행사를 새로 등록하거나 수정할 수 있습니다.</p>
 
                             <div className='closeBtn' onClick={closeModal}>
                                 <i className="fa-solid fa-xmark"></i>
