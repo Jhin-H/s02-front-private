@@ -3,7 +3,6 @@ import "../common/css/page.css";
 import Header from "../common/Header";
 import GroupContainer from "../S021100010/container/GroupContainer";
 import Pagination from"../common/elements/Pagination";
-import Title from "../common/elements/Title";
 
 
 const Group = () =>{

@@ -27,6 +27,7 @@ import Event from './page/Event';
               <Route path='/Budget' element={<Budget />} />
               <Route path='/Group' element={<Group />} />
               <Route path='/Event' element={<Event />} />
+              
             
             </Routes>
           </BrowserRouter>
