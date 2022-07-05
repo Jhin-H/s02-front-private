@@ -166,6 +166,7 @@ const Container = styled.div`
 
   .searchDate{
 
+   
     width: 100%;
     height: 38px;
     border: 2px solid #707070 ;
@@ -175,6 +176,7 @@ const Container = styled.div`
     line-height: 38px;
     display: flex;
     justify-content: space-evenly;
+    
     
 
   }
@@ -274,7 +276,7 @@ const s0221A0070 = () => {
 
         <div class="layer2">
 
-          <div class="searchDate">
+          
 
           <div class="searchDate">
 
@@ -289,10 +291,9 @@ const s0221A0070 = () => {
               required aria-required="true"></input>
               
 
-            </div>
-            
-            
           </div>
+            
+            
           
         </div>
 
