@@ -136,7 +136,7 @@ const Container = styled.div`
     margin-right: 30px;
     -webkit-appearance: none;
      -moz-appearance: none;
-     appearance: none;
+     appearance: none; 
   }
 
 
