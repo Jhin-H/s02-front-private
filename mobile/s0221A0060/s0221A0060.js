@@ -182,6 +182,10 @@ const Container = styled.div`
     top: 1.5px;
    
   }
+
+  input:focus{
+    outline:none;
+  }
  
 
   

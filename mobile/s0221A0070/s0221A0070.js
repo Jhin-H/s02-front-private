@@ -225,8 +225,9 @@ const Container = styled.div`
   
   }
 
-
-
+  input:focus{
+    outline:none;
+  }
 
 
 
