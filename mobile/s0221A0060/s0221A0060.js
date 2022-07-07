@@ -186,6 +186,10 @@ const Container = styled.div`
   input:focus{
     outline:none;
   }
+
+  textarea:focus{
+    outline:none;
+  }
  
 
   
@@ -218,7 +222,7 @@ const s0221A0060 = () => {
 
               <div class="label">제목</div>
 
-              <input>
+              <input></input>
 
             </div>
 
@@ -233,9 +237,9 @@ const s0221A0060 = () => {
             <div class="inputWrap">
 
               <div class="label">사용일자</div>
-              <div class="searchBtn"><img src="./images/magnifying-glass.png"></div>
+              <div class="searchBtn"><img src="./images/magnifying-glass.png"></img></div>
 
-              <input>
+              <input></input>
 
             </div>
 
@@ -243,7 +247,7 @@ const s0221A0060 = () => {
 
               <div class="label">사용금액</div>
               
-              <input>
+              <input></input>
               <div class="won">원</div>
 
             </div>
@@ -251,9 +255,9 @@ const s0221A0060 = () => {
             <div class="inputWrap">
 
               <div class="label">첨부파일</div>
-              <div class="addBtn"><img src="./images/plus.png"></div>
+              <div class="addBtn"><img src="./images/plus.png"></img></div>
 
-              <input>
+              <input></input>
 
             </div>
 
