@@ -135,7 +135,7 @@ const Container = styled.div`
   textarea{
 
     width: 100%;
-    height: 70px;
+    height: 50%;
     border-radius: 20px;
     border: 3px solid #707070;
     margin-top: 10px;
