@@ -85,17 +85,29 @@ const Container = styled.div`
 
   .requestBtn{
 
-    width: 288px;
-    height: 80px;
+    width: 140px;
+    height: 50px;
     background-color: #00878d;
-    margin: 0 auto;
     border-radius: 50px;
     text-align: center;
     color: white;
-    font-size: 40px;
-    font-weight: 800;
-    line-height: 80px;
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 50px;
     font-family: Apple SD Gothic Neo;
+  }
+
+  .delBtn {
+    width: 140px;
+    height: 50px;
+    background: rgba(226, 56, 56, 1);
+    border-radius: 50px;
+    color: rgba(255, 255, 255, 1);
+    font-family: Apple SD Gothic Neo;
+    font-weight: 500;
+    font-size: 21px;
+    text-align: center;
+    line-height: 50px;
   }
 
   .form{
@@ -277,6 +289,7 @@ const s0221A0060 = () => {
         <div class="btn-wrap">
 
           <div class="requestBtn">비용요청</div>
+          <div class="delBtn">삭제</div>
 
         </div>
 
