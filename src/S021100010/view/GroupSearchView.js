@@ -4,8 +4,8 @@ import Input from '../../common/elements/Input';
 import ImgPrimaryBtn from  "../../common/elements/ImgPrimaryBtn";
 import OrgRegModal from "../../S021100020/view/OrgRegModal";
 import "../../common/css/searchBox.css"
-
 import useModal from "../../common/hooks/useModal";
+
 
 function GroupSearchView (props) {
     const {classes} = props ;
@@ -16,7 +16,6 @@ function GroupSearchView (props) {
         alert(callBackData);
     };
 
-
     return (
        
             <div className="searchBox">
@@ -26,8 +25,12 @@ function GroupSearchView (props) {
                     <Input
 
                         placeholder="단체명"
+                        
+                        
                 
                     />
+
+
                     <Input
 
                         placeholder="대표자"

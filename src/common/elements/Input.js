@@ -64,14 +64,19 @@ const Container = styled.div`
     }
 `;
 
+
+
 const Input = ( {label, icon, ...props} ) => {
     return (
         <Container iconExist={!!icon}>
             <label>{label}</label>
             <input {...props} />
             <div className="icon-wrapper">{icon}</div>
+
         </Container>
     )
 };
+
+
 
 export default Input;
