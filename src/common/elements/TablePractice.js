@@ -28,8 +28,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+function createData(num, event, rep, phone, date) {
+  return { num, event, rep, phone, date };
 }
 
 const rows = [
@@ -47,22 +47,22 @@ export default function CustomizedTables() {
         <TableHead>
           <TableRow>
             <StyledTableCell>번호</StyledTableCell>
-            <StyledTableCell align="right">행사명</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+            <StyledTableCell>행사명</StyledTableCell>
+            <StyledTableCell>대표명</StyledTableCell>
+            <StyledTableCell>연락처</StyledTableCell>
+            <StyledTableCell>출입일시</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <StyledTableRow key={row.name}>
+            <StyledTableRow key={row.num}>
               <StyledTableCell component="th" scope="row">
-                {row.name}
+                {row.num}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
+              <StyledTableCell>{row.event}</StyledTableCell>
+              <StyledTableCell>{row.rep}</StyledTableCell>
+              <StyledTableCell>{row.phone}</StyledTableCell>
+              <StyledTableCell>{row.date}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

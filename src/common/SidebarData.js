@@ -60,19 +60,6 @@ export const SidebarData =[
         icon : <AiFillFolder />
     },
     
-    {
-        id:9,
-        title : "groupProto",
-        path : "/groupProto",
-        cName : "nav-text",
-        icon : <AiFillFolder />
-    },
-    {
-        id:10,
-        title : "searchTest",
-        path : "/searchTest",
-        cName : "nav-text",
-        icon : <AiFillFolder />
-    },
+  
     
 ]

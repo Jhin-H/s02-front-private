@@ -8,9 +8,8 @@ import Sign from './page/Sign';
 import Budget from './page/Budget';
 import Group from './page/Group';
 import Event from './page/Event';
-import Test from './test/test';
-import GroupProto from './test/groupProto';
-import SearchTest from './test/searchTest';
+import Test from './test/container/container';
+
 
 
 
@@ -34,8 +33,6 @@ import SearchTest from './test/searchTest';
               <Route path='/Group' element={<Group />} />
               <Route path='/Event' element={<Event />} />
               <Route path='/Test' element={<Test />} />
-              <Route path='/GroupProto' element={<GroupProto />} />
-              <Route path='/SearchTest' element={<SearchTest />} />
               
             
             </Routes>
