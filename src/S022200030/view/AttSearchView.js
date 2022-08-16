@@ -5,7 +5,6 @@ import Input from '../../common/elements/Input';
 
 
 const AttSearchView = () => {
-    
 
     return (
         

@@ -1,24 +1,24 @@
 import React from "react";
-import Weather from "./Weather";
 import styled from 'styled-components';
-
 
 const Container = styled.div`
 
 
+width : 50%;
+height : 80vh;
+background-color: blue;
 
-`
+    
+`;
 
-
-const Test = () => {
+const ContentsRight = () => {
     return (
-
         <Container>
-            <div>
-                <Weather/>
-            </div>
+
+            
+
 
         </Container>
     );
 }
-export default Test;
+export default ContentsRight;

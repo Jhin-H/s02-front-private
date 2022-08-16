@@ -11,10 +11,12 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "babel-preset-stage-0": "^6.24.1",
+    "customize-cra": "^1.0.0",
     "mobx": "^6.6.1",
     "mobx-react": "^7.5.2",
     "react": "^18.1.0",
     "react-addons-update": "^15.6.3",
+    "react-app-rewired": "^2.2.1",
     "react-daum-postcode": "^3.1.1",
     "react-dom": "^18.1.0",
     "react-icons": "^4.4.0",
@@ -48,6 +50,8 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.18.10",
     "@types/react-router-dom": "^5.3.3"
   }
+  
 }

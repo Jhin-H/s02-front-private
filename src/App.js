@@ -8,7 +8,7 @@ import Sign from './page/Sign';
 import Budget from './page/Budget';
 import Group from './page/Group';
 import Event from './page/Event';
-import Test from './test/container/container';
+import DepartReg from './S021100070/container/DepartRegContainer';
 
 
 
@@ -32,7 +32,7 @@ import Test from './test/container/container';
               <Route path='/Budget' element={<Budget />} />
               <Route path='/Group' element={<Group />} />
               <Route path='/Event' element={<Event />} />
-              <Route path='/Test' element={<Test />} />
+              <Route path='/DepartReg' element={<DepartReg />} />
               
             
             </Routes>

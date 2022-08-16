@@ -54,8 +54,8 @@ export const SidebarData =[
     },
     {
         id:8,
-        title : "test",
-        path : "/Test",
+        title : "부서등록 수정",
+        path : "/DepartReg",
         cName : "nav-text",
         icon : <AiFillFolder />
     },
