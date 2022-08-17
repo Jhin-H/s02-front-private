@@ -1,7 +1,5 @@
 import React from "react";
 import styled from 'styled-components';
-<<<<<<< HEAD
-=======
 import Input from '../../common/elements/Input';
 import PrimaryBtn from '../../common/elements/PrimaryBtn';
 import { ReactComponent as SearchIcon } from "../../common/lib/img/magnifierIcon.svg";
@@ -9,17 +7,10 @@ import { Checkbox } from "@mui/material";
 import {lightGreen } from "@mui/material/colors";
 import TransferList from "./TransferList";
 
->>>>>>> 353c073a1ce869dc50f896b8427d066d258039b8
 
 const Container = styled.div`
 
 
-<<<<<<< HEAD
-width : 50%;
-height : 80vh;
-background-color: blue;
-
-=======
 width : 40%;
 height : 80vh;
 
@@ -140,19 +131,12 @@ textarea {
     .delBtn:active{
         background-color: #747474;
     }
->>>>>>> 353c073a1ce869dc50f896b8427d066d258039b8
     
 `;
 
 const ContentsRight = () => {
     return (
         <Container>
-<<<<<<< HEAD
-
-            
-
-
-=======
             <div className="contentsWrap">
 
                 <div className="contentsHeader">
@@ -359,7 +343,6 @@ const ContentsRight = () => {
 
 
             </div>
->>>>>>> 353c073a1ce869dc50f896b8427d066d258039b8
         </Container>
     );
 }
