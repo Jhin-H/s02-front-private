@@ -160,10 +160,18 @@ const ContentsRight = () => {
                 </div>
 
                 <div className="layer layer1">
-                    <Input
-                        label="부서명"
-                        placeholder="부서명"
-                    />
+                    <div className="layer1_1">
+                        <Input
+                            label="부서명"
+                            placeholder="부서명"
+                        />
+                    </div>
+                    <div className="layer1_2">
+                        <Input
+                            label='행사장소'
+                            placeholder='행사장소'
+                        />
+                    </div>
                 </div>
 
                 <div className="layer layer2">
@@ -198,10 +206,7 @@ const ContentsRight = () => {
                 </div>
 
                 <div className="layer layer4">
-                    <Input
-                        label='행사장소'
-                        placeholder='행사장소'
-                    />
+                    
                 </div>
 
 
