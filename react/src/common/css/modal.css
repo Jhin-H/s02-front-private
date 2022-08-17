@@ -1,0 +1,101 @@
+.modalBg{
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(200, 200, 200, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9;
+}
+
+.modalBox{
+    width:800px;
+    height:700px;
+    padding: 50px 0 0 0 ;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.wrap{
+
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+}
+h1{
+    font-size: 41px;
+    font-weight: 200;
+}
+.modalSubTitle{
+
+    font-size: 12px;
+    font-weight: 400;
+    color: #ababab;
+
+}
+.closeBtn{
+
+    float: right;
+    margin-top: -60px;
+    font-size: 30px;
+    color: #747474;
+
+
+}
+
+.btnWrap{
+
+    display:flex;
+    margin-top:30px;
+}
+
+.PrimaryBtn{
+
+    margin-right: 20px;
+
+}
+
+.form{
+
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+}
+
+
+.inputWrap{
+
+    display:flex;
+    align-items: baseline;
+    
+}
+
+
+label{
+
+    margin-top: 20px;
+    
+}
+
+.btnWrap{
+    
+    display: flex;
+    margin-top: 30px;
+}
+
+
+.at{
+
+    font-size: 19px;
+    margin-right: 5px;
+    
+}
+
+.wave{
+    font-size: 19px;
+    margin-left: -20px;
+    margin-right: 10px;
+}
+
