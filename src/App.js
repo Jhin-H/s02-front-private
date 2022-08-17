@@ -9,6 +9,7 @@ import Budget from './page/Budget';
 import Group from './page/Group';
 import Event from './page/Event';
 import DepartReg from './S021100070/container/DepartRegContainer';
+import Popup from './S021100050/view/SearchMember';
 
 
 
@@ -33,6 +34,7 @@ import DepartReg from './S021100070/container/DepartRegContainer';
               <Route path='/Group' element={<Group />} />
               <Route path='/Event' element={<Event />} />
               <Route path='/DepartReg' element={<DepartReg />} />
+              <Route path='/Popup' element={<Popup />} />
               
             
             </Routes>
