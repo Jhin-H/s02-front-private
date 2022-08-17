@@ -68,7 +68,7 @@ export default function TransferList() {
   const customList = (title, items) => (
     <Card>
       <CardHeader
-        sx={{ px: 2, py: 1 }}
+        sx={{ px: 2, py: 0.5}}
         avatar={
           <Checkbox
             onClick={handleToggleAll(items)}
@@ -80,6 +80,12 @@ export default function TransferList() {
             inputProps={{
               'aria-label': 'all items selected',
             }}
+            sx={{
+              color: '#32bea6',
+              '&.Mui-checked': {
+              color: '#32bea6',
+              },
+            }}
           />
         }
         title={title}
@@ -88,8 +94,8 @@ export default function TransferList() {
       <Divider />
       <List
         sx={{
-          width: 200,
-          height: 200,
+          width: 168,
+          height: 115,
           bgcolor: 'background.paper',
           overflow: 'auto',
         }}
@@ -106,14 +112,25 @@ export default function TransferList() {
               role="회원"
               button
               onClick={handleToggle(value)}
+              sx={{
+                height:0.23,
+              
+              }}
             >
               <ListItemIcon>
                 <Checkbox
                   checked={checked.indexOf(value) !== -1}
                   tabIndex={-1}
                   disableRipple
+                  sx={{
+                    color: '#32bea6',
+                    '&.Mui-checked': {
+                    color: '#32bea6',
+                    },
+                  }}
                   inputProps={{
                     'aria-labelledby': labelId,
+                    
                   }}
                 />
               </ListItemIcon>
@@ -127,12 +144,12 @@ export default function TransferList() {
   );
 
   return (
-    <Grid className='grid' container spacing={2} justifyContent="center" alignItems="center">
+    <Grid className='grid' container spacing={2} justifyContent="left" alignItems="center">
       <Grid item>{customList('추가 할 회원', left)}</Grid>
       <Grid item>
         <Grid container direction="column" alignItems="center">
           <Button
-            sx={{ my: 0.5 }}
+            sx={{ my: 0.3 }}
             variant="outlined"
             size="small"
             onClick={handleCheckedRight}

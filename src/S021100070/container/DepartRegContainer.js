@@ -7,21 +7,31 @@ import ContentsRight from '../view/ContentsRight';
 
 const Container = styled.div`
 
-width: 100vw;
-height : 100%;
-
+width: 1130px;
+height: 900px;
 display:flex;
 align-items : center;
-justify-content : space-between;
+justify-content : space-around;
+margin:0 auto;
+position:relative;
+
+.closeBtn{
+    position:absolute;
+    right:20px;
+    top: 70px;
+}
 
 `
 
-const BudgetContainer = () => {
+const DepartRegContainer = () => {
     return (
         <Container>
+             <div className='closeBtn'>
+                    <i class="fa-solid fa-xmark"></i>
+            </div>
             <ContentsLeft/>
             <ContentsRight/>
         </Container>
     );
 }
-export default BudgetContainer;
+export default DepartRegContainer;

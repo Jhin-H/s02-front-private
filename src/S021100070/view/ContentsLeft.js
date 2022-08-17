@@ -5,15 +5,16 @@ const Container = styled.div`
 
 width : 40%;
 height : 80vh;
+
     .upperIconsWrap{
         display : flex;
-
     }
 
     .button{
         margin-right: 20px;
         margin-bottom: 10px;
         font-size: 18px;
+        color:#333;
     }
     .button:hover{
         cursor: pointer;
@@ -21,14 +22,14 @@ height : 80vh;
 
     .hierarchyBox{
 
-        border: 2px solid #333;
-        width : 100%;
-        height : 95.5%;
+        border: 2px solid #707070;
+        width : 450px;
+        height : 100%;
     }
 
     .tree{
         color:#333;
-        font-size: 26px;
+        font-size: 22px;
         margin:50px;
     }
     .tree, .tree ul{
@@ -44,24 +45,27 @@ height : 80vh;
     .tree label{
         cursor: pointer;
     }
-    .tree label:before{
-       //체크박스 아이콘
-    }
     .tree input[type="checkbox"] {
         display: none;
     }
     .tree input[type="checkbox"]:checked~ul {
         display: none;
     }
-    .tree input[type="checkbox"]:checked+label:before{
-        //체크박스 아이콘
-    }
-    .depth2{
-        margin-left: 25px;
-    }
 
     i{
         color: rgb(50, 190, 166)
+    }
+
+    .treeImg{
+        width :25px;
+        height :25px;
+        margin-right:10px;
+        margin-top:-5px;
+
+    }
+
+    .depth1{
+        margin-bottom:10px;
     }
 
     
@@ -94,24 +98,59 @@ const ContentsLeft = () => {
                 <ul className="tree">
                     <li>
                         <input type="checkbox" id="root"></input>
+                        
                         <label for="root">
-                        <i class="fa-solid fa-people-roof"></i>
+                            <img src="../../img/officeBuilding.png" className="treeImg"></img>
                             에스원테크
                         </label>
                         <ul>
-                            <li>
-                            <input type="checkbox" id="depth1"></input>
-                            <label for="depth1">개발1부</label>
-                                <ul class="depth2">
-                                    <li>
-                                    <i class="fa-solid fa-calendar-exclamation"></i>
-                                    행사1
-                                    </li>
-                                    <li>행사2</li>
-                                    <li>행사3</li>
-                                </ul>
+                            <li className="depth1">
+                                <input type="checkbox" id="depth1"></input>
+                                <img src="../../img/briefCase.png" className="treeImg">
+                                </img>
+                                <label for="depth1">개발1부</label>
+                                    <ul class="depth2">
+                                        <li>
+                                            <img src="../../img/calendarCheck.png" className="treeImg">
+                                            </img>
+                                            행사1
+                                        </li>
+                                        <li>
+                                            <img src="../../img/calendarCheck.png" className="treeImg">
+                                            </img>
+                                            행사2
+                                        </li>
+                                        <li>
+                                            <img src="../../img/calendarCheck.png" className="treeImg">
+                                            </img>
+                                            행사3
+                                        </li>
+                                    </ul>
                             </li>
-                            
+
+                            <li className="depth1">
+                                <input type="checkbox" id="depth1"></input>
+                                <img src="../../img/briefCase.png" className="treeImg">
+                                </img>
+                                <label for="depth1">개발2부</label>
+                                    <ul class="depth2">
+                                        <li>
+                                            <img src="../../img/calendarCheck.png" className="treeImg">
+                                            </img>
+                                            행사1
+                                        </li>
+                                        <li>
+                                            <img src="../../img/calendarCheck.png" className="treeImg">
+                                            </img>
+                                            행사2
+                                        </li>
+                                        <li>
+                                            <img src="../../img/calendarCheck.png" className="treeImg">
+                                            </img>
+                                            행사3
+                                        </li>
+                                    </ul>
+                            </li>
                         </ul>
                     </li>
                 </ul>

@@ -4,29 +4,34 @@ import Input from '../../common/elements/Input';
 import PrimaryBtn from '../../common/elements/PrimaryBtn';
 import { ReactComponent as SearchIcon } from "../../common/lib/img/magnifierIcon.svg";
 import { Checkbox } from "@mui/material";
-import {lightGreen } from "@mui/material/colors";
+import {cyan } from "@mui/material/colors";
 import TransferList from "./TransferList";
 
 
 const Container = styled.div`
 
-    width : 600px;
+    width : 442px;
   
 .contentsWrap{
     width: 100%;
-    background-color:red;
 
 }
 .contentsHeader{
-    font-size : 32px;
+    font-size : 30px;
     font-weight : 600;
-    margin-bottom:20px;
-
+    margin-bottom: 15px;
 }
-
 .layer{
     display:flex;
     align-items :center;
+}
+
+.layer1{
+    margin-top: 25px;
+}
+
+.layer1, .layer2, .layer3{
+    margin-left:10px;
 }
 
 .layer2_1, .layer2_2, .layer3_1{
@@ -48,6 +53,10 @@ const Container = styled.div`
     bottom: 35px;
 }
 
+.layer3{
+    margin-top : 0px;
+}
+
 .layer3_1{
     align-items :center;
     justify-content :space-between;
@@ -66,18 +75,26 @@ const Container = styled.div`
 }
 
 .layer5{
-    margin-top:-10px;
-    margin-bottom:10px;
+    margin-top:-20px;
+    margin-left:10px;
+    margin-bottom:3px;
+    
+}
+
+.layer5_inner{
+    margin:0 auto;
+    display :flex;
 }
 
 .layer6{
     margin-bottom:20px;
+    margin-left:10px;
 }
 
 
 textarea {
-    width: 430px;
-    height: 50px;
+    width: 420px;
+    height: 35px;
     margin-top: 5px;
     outline: none;
     resize:none;
@@ -85,46 +102,58 @@ textarea {
 
 .layer7{
     margin-top:-20px;
-    margin-bottom : 20px;
+    margin-bottom : 15px;
 }
 
 .cell{
-    
     display:flex;
     align-items:center;
-    margin-bottom:-25px;
+    margin-bottom:-40px;
+}
+
+.cell:last-child{
+    margin-bottom: -20px;
 }
 
 .inputWrap{
     padding-top:18px;
     margin-left:10px;
 }
-
-
-.memberList{
-    width : 200px;
-    height: 200px;
-    border: 2px solid #333;
-    margin-right : 20px;
-}
-
-.addedMemberList{
-    width : 200px;
-    height: 200px;
-    border: 2px solid #333;
-
-}
-
-.grid{
-    margin-left: -150px;
+.shortInput{
+    width:110px;
 }
 
 .bottomBtnWrap{
-    width : 250px;
+    width : 270px;
     display:flex;
-    margin: 0 auto;
-    background-color:red;
+    justify-content:space-between;
+    margin-top: 20px;
+    margin-left: 80px;
+
 }
+
+.saveBtn {
+    width: 110px;
+    height: 45px;
+    background: rgb(50, 190, 166);
+    border-radius: 50px;
+    color: white;
+    line-height: 45px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.saveBtn:hover{
+
+    cursor: pointer;
+    background-color: #24ac91;
+
+}
+
+.saveBtn:active{
+background-color: rgb(25, 128, 111);
+}
+
 
 .delBtn {
     width: 110px;
@@ -145,6 +174,13 @@ textarea {
 .delBtn:active{
     background-color: #747474;
 }
+
+.betweenWave{
+    margin-top:-10px;
+
+}
+
+
     
 `;
 
@@ -196,7 +232,7 @@ const ContentsRight = () => {
                             label='사용일자'
                             type='date'
                         />
-                        <p>~</p>
+                        <p className="betweenWave">~</p>
                         <Input
                             type='date'
                         />
@@ -209,42 +245,44 @@ const ContentsRight = () => {
 
 
                 <div className="layer layer5">
-                    <div className="checkboxWrap">
-                        <div className="label">결제여부</div>
-                        <Checkbox
-                            defaultChecked
-                             sx={{
-                                color: lightGreen[800],
-                                '&.Mui-checked': {
-                                  color: lightGreen[800],
-                                },
-                              }}
-                        />
-                        
-                    </div>
-                    <div className="checkboxWrap">
-                        <div className="label">공개여부</div>
-                        <Checkbox
-                            defaultChecked
-                             sx={{
-                                color: lightGreen[800],
-                                '&.Mui-checked': {
-                                  color: lightGreen[800],
-                                },
-                              }}
-                        />
-                    </div>
-                    <div className="checkboxWrap">
-                        <div className="label">기본사역여부</div>
-                        <Checkbox
-                            defaultChecked
-                             sx={{
-                                color: lightGreen[800],
-                                '&.Mui-checked': {
-                                  color: lightGreen[800],
-                                },
-                              }}
-                        />
+                    <div className="layer5_inner">
+                        <div className="checkboxWrap">
+                            <div className="label">결제여부</div>
+                            <Checkbox
+                                defaultChecked
+                                sx={{
+                                    color: '#32bea6',
+                                    '&.Mui-checked': {
+                                    color: '#32bea6',
+                                    },
+                                }}
+                            />
+                            
+                        </div>
+                        <div className="checkboxWrap">
+                            <div className="label">공개여부</div>
+                            <Checkbox
+                                defaultChecked
+                                sx={{
+                                    color: '#32bea6',
+                                    '&.Mui-checked': {
+                                    color: '#32bea6',
+                                    },
+                                }}
+                            />
+                        </div>
+                        <div className="checkboxWrap">
+                            <div className="label">기본사역여부</div>
+                            <Checkbox
+                                defaultChecked
+                                sx={{
+                                    color: '#32bea6',
+                                    '&.Mui-checked': {
+                                    color: '#32bea6',
+                                    },
+                                }}
+                            />
+                        </div>
                     </div>
                 </div>
 
@@ -264,9 +302,9 @@ const ContentsRight = () => {
                         <Checkbox
                             defaultChecked
                             sx={{
-                                color: lightGreen[800],
+                                color: '#32bea6',
                                 '&.Mui-checked': {
-                                color: lightGreen[800],
+                                color: '#32bea6',
                                 },
                             }}
                         />
@@ -275,6 +313,8 @@ const ContentsRight = () => {
                             <Input
                             placeholder='검색'
                             icon={<SearchIcon />}/>
+
+                            <Input className='shortInput'/>
                         </div>
                     
                     </div>
@@ -283,9 +323,9 @@ const ContentsRight = () => {
                         <Checkbox
                             defaultChecked
                             sx={{
-                                color: lightGreen[800],
+                                color: '#32bea6',
                                 '&.Mui-checked': {
-                                color: lightGreen[800],
+                                color: '#32bea6',
                                 },
                             }}
                         />
@@ -294,6 +334,7 @@ const ContentsRight = () => {
                             <Input
                             placeholder='검색'
                             icon={<SearchIcon />}/>
+                            <Input className='shortInput'/>
                         </div>
                     </div>
                 
@@ -301,9 +342,9 @@ const ContentsRight = () => {
                         <Checkbox
                             defaultChecked
                             sx={{
-                                color: lightGreen[800],
+                                color: '#32bea6',
                                 '&.Mui-checked': {
-                                color: lightGreen[800],
+                                color: '#32bea6',
                                 },
                             }}
                         />
@@ -312,6 +353,7 @@ const ContentsRight = () => {
                             <Input
                             placeholder='검색'
                             icon={<SearchIcon />}/>
+                            <Input className='shortInput'/>
                         </div>
                     </div>
                 
@@ -319,9 +361,9 @@ const ContentsRight = () => {
                         <Checkbox
                             defaultChecked
                             sx={{
-                                color: lightGreen[800],
+                                color: '#32bea6',
                                 '&.Mui-checked': {
-                                color: lightGreen[800],
+                                color: '#32bea6',
                                 },
                             }}
                         />
@@ -330,6 +372,7 @@ const ContentsRight = () => {
                             <Input
                             placeholder='검색'
                             icon={<SearchIcon />}/>
+                            <Input className='shortInput'/>
                         </div>
                     </div>
              
@@ -347,14 +390,9 @@ const ContentsRight = () => {
                 </div>
 
                 <div className="bottomBtnWrap">
-
-                    <PrimaryBtn/>
-
-                    <div className="delBtn">
-                        삭제
-                    </div>
+                    <div className="saveBtn">저장</div>
+                    <div className="delBtn">삭제</div>
                 </div>
-
 
             </div>
         </Container>
