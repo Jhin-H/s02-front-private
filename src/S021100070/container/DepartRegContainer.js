@@ -7,8 +7,12 @@ import ContentsRight from '../view/ContentsRight';
 
 const Container = styled.div`
 
-display:flex;
+width: 100vw;
+height : 100%;
 
+display:flex;
+align-items : center;
+justify-content : space-between;
 
 `
 
