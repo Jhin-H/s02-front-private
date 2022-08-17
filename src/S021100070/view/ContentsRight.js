@@ -10,10 +10,13 @@ import TransferList from "./TransferList";
 
 const Container = styled.div`
 
+    width : 600px;
+  
+.contentsWrap{
+    width: 100%;
+    background-color:red;
 
-width : 40%;
-height : 80vh;
-
+}
 .contentsHeader{
     font-size : 32px;
     font-weight : 600;
@@ -28,6 +31,10 @@ height : 80vh;
 
 .layer2_1, .layer2_2, .layer3_1{
     display:flex;
+}
+
+.layer1_2{
+    margin-left:10px;
 }
 
 .layer2_2{
@@ -73,7 +80,7 @@ textarea {
     height: 50px;
     margin-top: 5px;
     outline: none;
-     resize:none;
+    resize:none;
 }
 
 .layer7{
@@ -112,25 +119,32 @@ textarea {
     margin-left: -150px;
 }
 
+.bottomBtnWrap{
+    width : 250px;
+    display:flex;
+    margin: 0 auto;
+    background-color:red;
+}
+
 .delBtn {
-        width: 110px;
-        height: 45px;
-        background: #E23838;
-        border-radius: 50px;
-        color: white;
-        line-height: 45px;
-        text-align: center;
-        font-size: 22px;
+    width: 110px;
+    height: 45px;
+    background: #E23838;
+    border-radius: 50px;
+    color: white;
+    line-height: 45px;
+    text-align: center;
+    font-size: 22px;
     }
-    .delBtn:hover{
+.delBtn:hover{
 
-        cursor: pointer;
-        background-color: #b1b1b1;
-    }
+    cursor: pointer;
+    background-color: #b1b1b1;
+}
 
-    .delBtn:active{
-        background-color: #747474;
-    }
+.delBtn:active{
+    background-color: #747474;
+}
     
 `;
 
