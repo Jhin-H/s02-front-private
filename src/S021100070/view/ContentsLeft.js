@@ -151,6 +151,13 @@ const ContentsLeft = () => {
                                         </li>
                                     </ul>
                             </li>
+
+                            <li className="depth1">
+                                <input type="checkbox" id="depth1"></input>
+                                <img src="../../img/briefCase.png" className="treeImg">
+                                </img>
+                                <label for="depth1">행사</label>
+                            </li>
                         </ul>
                     </li>
                 </ul>

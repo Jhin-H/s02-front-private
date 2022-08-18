@@ -311,10 +311,12 @@ const ContentsRight = () => {
                         <p>1차 결제자</p>
                         <div className="inputWrap">
                             <Input
-                            placeholder='검색'
+                            placeholder='결제자 검색'
                             icon={<SearchIcon />}/>
 
-                            <Input className='shortInput'/>
+                            <Input className='shortInput'
+                            placeholder='직책'
+                            />
                         </div>
                     
                     </div>
@@ -332,9 +334,11 @@ const ContentsRight = () => {
                         <p>2차 결제자</p>
                         <div className="inputWrap">
                             <Input
-                            placeholder='검색'
+                            placeholder='결제자 검색'
                             icon={<SearchIcon />}/>
-                            <Input className='shortInput'/>
+                            <Input className='shortInput'
+                            placeholder='직책'
+                            />
                         </div>
                     </div>
                 
@@ -351,9 +355,11 @@ const ContentsRight = () => {
                         <p>3차 결제자</p>
                         <div className="inputWrap">
                             <Input
-                            placeholder='검색'
+                            placeholder='결제자 검색'
                             icon={<SearchIcon />}/>
-                            <Input className='shortInput'/>
+                            <Input className='shortInput'
+                            placeholder='직책'
+                            />
                         </div>
                     </div>
                 
@@ -370,9 +376,11 @@ const ContentsRight = () => {
                         <p>4차 결제자</p>
                         <div className="inputWrap">
                             <Input
-                            placeholder='검색'
+                            placeholder='결제자 검색'
                             icon={<SearchIcon />}/>
-                            <Input className='shortInput'/>
+                            <Input className='shortInput'
+                            placeholder='직책'
+                            />
                         </div>
                     </div>
              

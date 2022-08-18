@@ -14,6 +14,7 @@ align-items : center;
 justify-content : space-around;
 margin:0 auto;
 position:relative;
+background-color:white;
 
 .closeBtn{
     position:absolute;
@@ -21,17 +22,32 @@ position:relative;
     top: 70px;
 }
 
+.modalBg{
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(200, 200, 200, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9;
+}
+
 `
 
 const DepartRegContainer = () => {
     return (
-        <Container>
-             <div className='closeBtn'>
-                    <i class="fa-solid fa-xmark"></i>
-            </div>
-            <ContentsLeft/>
-            <ContentsRight/>
-        </Container>
+        <div className='modalBg'>
+            <Container>
+                <div className='closeBtn'>
+                        <i class="fa-solid fa-xmark"></i>
+                </div>
+                <ContentsLeft/>
+                <ContentsRight/>
+            </Container>
+        </div>
     );
 }
 export default DepartRegContainer;
