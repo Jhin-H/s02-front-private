@@ -1,12 +1,10 @@
 import React from "react";
-import GroupTable from   "../../common/elements/GroupTable"
-
+import GroupTable from   "../../common/elements/GroupTable";
 
 const GroupListView = () => {
     return (
-      
         <GroupTable/>
-
     );
 }
+
 export default GroupListView;
