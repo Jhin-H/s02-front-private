@@ -70,7 +70,7 @@ const Input = ( {label, icon, ...props} ) => {
     return (
         <Container iconExist={!!icon}>
             <label>{label}</label>
-            <input {...props} />
+            <input {...props}/>
             <div className="icon-wrapper">{icon}</div>
 
         </Container>
