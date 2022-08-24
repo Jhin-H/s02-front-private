@@ -1,10 +1,104 @@
-import React from "react";
-import GroupTable from   "../../common/elements/GroupTable";
+import React, { useState } from "react";
+import { observer, inject } from "mobx-react";
+import styled from 'styled-components';
 
-const GroupListView = () => {
-    return (
-        <GroupTable/>
-    );
+const Container = styled.div`
+    table {
+        margin-top: 30px;
+        border: 1.5px solid #333;
+        border-left: none;
+        border-right: none;
+        width: 100%;
+        height: 40%;
+        text-align: center;
+        border-collapse: collapse;
+    }
+    th{
+        font-weight: 500;
+        font-size: 16pt;
+        padding: 10px 0;
+    border-bottom: 1.5px solid #333;
+    }
+    td{
+        padding: 15px 0;
+    }
+    tr:hover:not(thead>tr){
+        background-color: #dcdcdc;
+    }
+    .checkbox{
+        -webkit-appearance: none;
+        position: relative;
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        outline: none !important;
+        border: 1px solid rgb(50, 190, 166);
+        border-radius: 100%;
+        background: #fbfbfb;
+    }
+    .checkbox:checked{
+        background-color: rgb(50, 190, 166);
+    }
+`;
+
+function GroupListView (props) {
+
+    const { groupStore } = props;
+    const [checkedList, setCheckedList] = useState(new Set());
+
+    const checkedHandler = ({target}) => {
+        checkedItemHandler(target.checked, target.value);
+    }
+    const checkedItemHandler = (checked, value) => {
+        if (checked) {
+            checkedList.add(value);
+            setCheckedList(checkedList);
+            groupStore.setCheckedOrgId(Array.from(checkedList));
+        } else if (!checked && checkedList.has(value)) {
+            checkedList.delete(value);
+            setCheckedList(checkedList);
+            groupStore.setCheckedOrgId(Array.from(checkedList));
+        }
+    };
+
+    return(
+        <Container>
+            <table>
+                <thead>
+                    <tr>
+                        <th>선택</th>
+                        <th>번호</th>
+                        <th>단체명</th>
+                        <th>대표자</th>
+                        <th>연락처</th>
+                        <th>대표자 메일</th>
+                        <th>회원수</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {groupStore.groupList.map((value, key) => (
+                        <tr key={key}>
+                            <td>
+                                <input
+                                    type="checkbox"
+                                    className="checkbox"
+                                    value={value.orgId}
+                                    onChange={(e) => {checkedHandler(e)}}
+                                    >
+                                </input>
+                            </td>
+                            <td>{value.orgId}</td>
+                            <td>{value.orgName}</td>
+                            <td>{value.memberName}</td>
+                            <td>{value.telNo}</td>
+                            <td>{value.email}</td>
+                            <td>{value.memberCnt}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </Container>
+    )
 }
 
-export default GroupListView;
+export default inject('groupStore')(observer(GroupListView));

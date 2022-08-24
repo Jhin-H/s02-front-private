@@ -22,8 +22,12 @@ const ModalWrapper = styled.div`
 
 const useModal = () => {
     const [modalOpened, setModalOpened] = React.useState(false);
-    const openModal = () => { setModalOpened(true) }
-    const closeModal = () => { setModalOpened(false) }
+    const openModal = () => {
+        setModalOpened(true)
+    }
+    const closeModal = () => {
+        setModalOpened(false)
+    }
 
     const ModalPortal = ({ children }) => {
         const ref = React.useRef();
