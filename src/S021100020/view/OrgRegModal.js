@@ -29,7 +29,6 @@ function OrgRegModal({ closeModal, store }) {
 
     const groupStore = store;
 
-    // 수정: 번호 3분할 반환, 등록: 빈 데이터 반환
     let hpNum1 = ''
     let hpNum2 = ''
     let hpNum3 = ''
@@ -105,8 +104,8 @@ function OrgRegModal({ closeModal, store }) {
         }
         closeModal();
     }
+    // 카카오 주소찾기 API 적용
     const openPostCodeModal = () => {
-        // 카카오 주소찾기 API 적용
         alert("주소찾기");
     }
 

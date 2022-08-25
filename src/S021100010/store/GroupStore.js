@@ -1,5 +1,5 @@
 import { action, observable, makeObservable, runInAction } from 'mobx';
-import { getGroupList, deleteGroup, resistGroup, checkGroup, updateGroup } from '../repository/GroupRepository';
+import { getGroupList, deleteGroup, resistGroup, checkGroup, updateGroup, dupEmailCheck } from '../repository/GroupRepository';
 
 class GroupStore {
 
@@ -87,6 +87,12 @@ class GroupStore {
     get requestResult() {
         return this._requestResult
     }
+    // 중복체크 할 이메일
+    @observable
+    _emailProps
+    get emailProps() {
+        return this._emailProps
+    }
     
     // 입력된 검색 조건 변수에 할당
     @action
@@ -136,16 +142,6 @@ class GroupStore {
         }
     }
 
-    // 검색 조건 초기화
-    @action
-    initSearchProps() {
-        this._search = {orgName: '', memberName: ''}
-    }
-    // 선택된 단체 초기화
-    @action
-    initCheckedOrgId() {
-        this._checkedOrgIdList = []
-    }
     // 선택된 단체 조회 정보 초기화
     @action
     initSelectGroup() {
@@ -178,26 +174,8 @@ class GroupStore {
             zipCode: ""
         }
     }
-    // 단체 수정 데이터 초기화
-    @action
-    initUpdateProps() {
-        this._updateGroup = {
-            address: "",
-            detailAddress: "",
-            firstHpNo: "",
-            firstTelNo: "None",
-            lastHpNo: "",
-            lastTelNo: "None",
-            memberName: "",
-            middleHpNo: "",
-            middleTelNo: "None",
-            orgId: null,
-            orgName: "",
-            zipCode: ""
-        }
-    }
     
-    // 단체 리스트 출력하기
+    // 검색 조건에 따른 단체 리스트 출력
     @action
     async onSetGroupList() {
         const res = await getGroupList(this.search.orgName, this.search.memberName);
@@ -205,23 +183,23 @@ class GroupStore {
             this._groupList = res;
         });
     }
-    // 선택한 단체 조회
-    async checkSelectGroup() {
-        const res = await checkGroup(this.checkedOrgIdList[0]);
-        this._selectGroup = res;
-    }
     // 단체 등록 요청 (작업중)
     async resistGroupList() {
         const res = await resistGroup(this.resistGroup);
         runInAction(() => {
             this._requestResult = res;
             if (this.requestResult === 200) {
-                this.initResistProps();
+                this.onSetGroupList();
                 alert('등록되었습니다.');
             } else {
                 alert('잠시 후 다시 시도해주세요.\n같은 문제가 반복해서 발생할 경우 문의 부탁드립니다.');
             }
         })
+    }
+    // 선택한 단체 조회
+    async checkSelectGroup() {
+        const res = await checkGroup(this.checkedOrgIdList[0]);
+        this._selectGroup = res;
     }
     // 선택한 단체 수정
     async updateSelectGroup() {
@@ -229,7 +207,6 @@ class GroupStore {
         runInAction(() => {
             this._requestResult = res;
             if (this.requestResult === 200) {
-                this.initUpdateProps();
                 alert('수정되었습니다.');
             } else {
                 alert('잠시 후 다시 시도해주세요.\n같은 문제가 반복해서 발생할 경우 문의 부탁드립니다.');
@@ -242,7 +219,6 @@ class GroupStore {
         runInAction(() => {
             this._requestResult = res;
             if (this.requestResult === 200) {
-                // this.initSearchProps(); // store에 저장된 검색조건 초기화
                 this.onSetGroupList();
                 alert('삭제되었습니다.');
             } else {
@@ -250,6 +226,19 @@ class GroupStore {
             }
         });
     }
+    // 이메일 중복 체크
+    async emailCheck() {
+        const res = await dupEmailCheck(this.emailProps);
+        runInAction(() => {
+            this._requestResult = res;
+            if (this.requestResult === 200) {
+                alert('사용 가능.');
+            } else {
+                alert('중복된 이메일.');
+            }
+        })
+    }
+
 }
 
 export default new GroupStore();

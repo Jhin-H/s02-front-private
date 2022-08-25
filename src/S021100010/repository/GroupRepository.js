@@ -30,5 +30,12 @@ const deleteGroup = async (orgIdList) => {
     const res = await axios.post('/rest/v1/s021100010/org-list', orgIdList);
     return res.status;
 }
+// 이메일 중복 체크
+const dupEmailCheck = async (emailProps) => {
+    const res = await axios.get('/rest/v1/s021100010/dup-check-email', {params: {
+        email: emailProps
+    }});
+    return res.status;
+}
 
-export { getGroupList, checkGroup, resistGroup, updateGroup, deleteGroup };
+export { getGroupList, checkGroup, resistGroup, updateGroup, deleteGroup, dupEmailCheck };

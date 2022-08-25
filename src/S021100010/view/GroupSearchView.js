@@ -89,32 +89,21 @@ function GroupSearchView (props) {
 
     const { groupStore } = props;
     const { ModalPortal, closeModal, openModal } = useModal();
-    // const [orgName, setOrgName] = useState(''); // input의 orgName 입력값
-    // const [memberName, setMemberName] = useState(''); // input의 memberName 입력값
 
     // 검색 조건의 입력값을 store에 저장
     const onSetSearchProps = (e) => {
         groupStore.setSearchProps(e.target.name, e.target.value);
-        // 검색조건 입력값을 Input에 할당, 코드 사용하면 조건 입력시 자동으로 갱신됨
-        // if (e.target.name === 'orgName') {
-        //     setOrgName(e.target.value);
-        // } else if (e.target.name === 'memberName') {
-        //     setMemberName(e.target.value);
-        // }
     }
-    // 조건에 따른 검색 결과 출력
+    // 조건에 따른 검색 결과 출력 (체크박스 초기화)
     const clickImgSecondaryBtn = () => {
-        groupStore.initCheckedOrgId(); // 체크된 항목 초기화
         groupStore.onSetGroupList();
     }
-    // 선택된 항목 삭제 후 검색 조건 초기화, 단체 리스트 초기화
-    const clickDelete = () => {
+    // 선택된 항목 삭제 (체크박스 초기화)
+    const clickDelete = async () => {
         try {
             if(groupStore.checkedOrgIdList.length > 0) {
                 if(window.confirm(groupStore.checkedOrgIdList.length+'개의 항목을 삭제하시겠습니까?')) {
-                    // setOrgName(''); // 단체명 검색조건 초기화
-                    // setMemberName(''); // 대표명 검색조건 초기화
-                    groupStore.deleteGroupList();
+                    await groupStore.deleteGroupList();
                 } else {
                     return;
                 }
@@ -130,7 +119,6 @@ function GroupSearchView (props) {
         try {
             if(groupStore.checkedOrgIdList.length === 1) {
                 groupStore.initSelectGroup(); // 이전에 조회된 단체 정보 초기화
-                groupStore.initResistProps(); // 모달창에 작성되었던 데이터 초기화
                 await groupStore.checkSelectGroup(); // 조회
                 groupStore.setSelectGroupOnUpdate(); // 조회 데이터를 updateGroup에 할당
                 openModal();
@@ -140,13 +128,12 @@ function GroupSearchView (props) {
                 alert('수정할 항목은 하나만 선택할 수 있습니다.');
             }
         } catch (error) {
-            alert('수정할 항목을 선택해주세요.');
+            alert('다시 시도해 주세요.');
         }
     }
     const clickResist = async () => {
-        groupStore.initCheckedOrgId(); // 선택된 단체 orgId 초기화
-        groupStore.initSelectGroup(); // 조회된 단체 정보 초기화
-        groupStore.initResistProps(); // 모달창에 작성되었던 데이터 초기화
+        groupStore.initSelectGroup(); // 이전에 조회된 단체 정보 초기화
+        groupStore.initResistProps(); // 이전 등록창에 작성되었던 데이터 초기화
         openModal();
     }
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { observer, inject } from "mobx-react";
 import styled from 'styled-components';
 
@@ -46,8 +46,18 @@ function GroupListView (props) {
     const { groupStore } = props;
     const [checkedList, setCheckedList] = useState(new Set());
 
-    const checkedHandler = ({target}) => {
+    useEffect(() => { // 리스트가 렌더링되면 선택 초기화
+        for (let i=0; i<groupStore.groupList.length; i++) {
+            document.getElementById(i+"box").checked = false;
+        }
+        checkedList.clear();
+        setCheckedList(checkedList);
+        groupStore.setCheckedOrgId(Array.from(checkedList));
+    }, [groupStore.groupList, groupStore, checkedList])
+
+    const checkedHandler = ({ target }) => {
         checkedItemHandler(target.checked, target.value);
+        target.checked = checkedList.has(target.value) ? true : false;
     }
     const checkedItemHandler = (checked, value) => {
         if (checked) {
@@ -82,8 +92,9 @@ function GroupListView (props) {
                                 <input
                                     type="checkbox"
                                     className="checkbox"
+                                    id={Number(key)+'box'}
                                     value={value.orgId}
-                                    onChange={(e) => {checkedHandler(e)}}
+                                    onChange={(e) => {checkedHandler(e);}}
                                     >
                                 </input>
                             </td>
