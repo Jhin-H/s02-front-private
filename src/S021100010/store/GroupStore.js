@@ -1,5 +1,5 @@
 import { action, observable, makeObservable, runInAction } from 'mobx';
-import { getGroupList, deleteGroup, resistGroup, checkGroup, updateGroup, dupEmailCheck } from '../repository/GroupRepository';
+import { getGroupList, deleteGroup, registGroup, checkGroup, updateGroup, dupEmailCheck } from '../repository/GroupRepository';
 
 class GroupStore {
 
@@ -28,7 +28,7 @@ class GroupStore {
     get checkedOrgIdList() {
         return this._checkedOrgIdList;
     }
-    // 단체 조회 데이터
+    // 단체 조회 결과
     @observable
     _selectGroup = {
         orgId: null,
@@ -39,16 +39,20 @@ class GroupStore {
         telNo: null,
         hpNo: null,
         email: null,
-        memberTp: null
+        memberTp: null,
+        memberName: null
     }
     get selectGroup() {
         return this._selectGroup;
     }
     // 단체 등록 데이터
     @observable
-    _resistGroup = {
+    _registGroup = {
         address: "",
         detailAddress: "",
+        email: "",
+        emailId: "",
+        emailDomain: "",
         firstHpNo: "",
         firstTelNo: "None",
         lastHpNo: "",
@@ -59,14 +63,17 @@ class GroupStore {
         orgName: "",
         zipCode: ""
     }
-    get resistGroup() {
-        return this._resistGroup
+    get registGroup() {
+        return this._registGroup
     }
     // 단체 수정 데이터
     @observable
     _updateGroup = {
         address: "",
         detailAddress: "",
+        email: "",
+        emailId: "",
+        emailDomain: "",
         firstHpNo: "",
         firstTelNo: "None",
         lastHpNo: "",
@@ -87,11 +94,11 @@ class GroupStore {
     get requestResult() {
         return this._requestResult
     }
-    // 중복체크 할 이메일
+    // 이메일 중복체크 결과
     @observable
-    _emailProps
-    get emailProps() {
-        return this._emailProps
+    _checkEmailRes
+    get checkEmailRes() {
+        return this._checkEmailRes
     }
     
     // 입력된 검색 조건 변수에 할당
@@ -107,20 +114,48 @@ class GroupStore {
     setCheckedOrgId(orgIdList) {
         this._checkedOrgIdList = orgIdList     
     }
-    // 단체 등록 데이터 할당
+    // 단체 등록 데이터 할당, 이메일 중복체크
     @action
-    setResistProps(name, value) {
-        this._resistGroup = {
-            ...this._resistGroup,
+    async setRegistProps(name, value) {
+        this._registGroup = {
+            ...this._registGroup,
             [name]: value
         }
+        if (name === 'emailId' || name === 'emailDomain') {
+            this._registGroup = {
+                ...this._registGroup,
+                'email': this.registGroup.emailId + '@' + this.registGroup.emailDomain
+            }
+            await this.emailCheck(this.registGroup.email);
+        }
     }
-    // 단체 수정 데이터 할당
+    // 단체 수정 데이터 할당, 이메일 중복체크 할 때 조회된 이메일과 수정 폼의 이메일이 같으면 중복체크X
     @action
-    setUpdateProps(name, value) {
+    async setUpdateProps(name, value) {
         this._updateGroup = {
             ...this._updateGroup,
             [name]: value
+        }
+        if (name === 'emailId') {
+            this._updateGroup = {
+                ...this._updateGroup,
+                'email': this.updateGroup.emailId + '@' + this.updateGroup.emailDomain
+            }
+            if(this.updateGroup.email === this.selectGroup.email) {
+                this._checkEmailRes = true;
+            } else {
+                await this.emailCheck(this.updateGroup.email);
+            }
+        } else if (name === 'emailDomain') {
+            this._updateGroup = {
+                ...this._updateGroup,
+                'email': this.updateGroup.emailId + '@' + this.updateGroup.emailDomain
+            }
+            if(this.updateGroup.email === this.selectGroup.email) {
+                this._checkEmailRes = true;
+            } else {
+                await this.emailCheck(this.updateGroup.email);
+            }
         }
     }
     // 조회된 단체 데이터를 수정할 단체 변수에 할당
@@ -129,11 +164,14 @@ class GroupStore {
         this._updateGroup = {
             address: this.selectGroup.address,
             detailAddress: this.selectGroup.detailAddress,
+            email: this.selectGroup.email,
+            emailId: this.selectGroup.email.split('@')[0],
+            emailDomain: this.selectGroup.email.split('@')[1],
             firstHpNo: this.selectGroup.hpNo.split('-')[0],
             firstTelNo: "None",
             lastHpNo: this.selectGroup.hpNo.split('-')[2],
             lastTelNo: "None",
-            memberName: "",
+            memberName: this.selectGroup.memberName,
             middleHpNo: this.selectGroup.hpNo.split('-')[1],
             middleTelNo: "None",
             orgId: this.selectGroup.orgId,
@@ -154,15 +192,17 @@ class GroupStore {
             telNo: null,
             hpNo: null,
             email: null,
-            memberTp: null
+            memberTp: null,
+            memberName: null
         }
     }
     // 단체 등록 데이터 초기화
     @action
-    initResistProps() {
-        this._resistGroup = {
+    initRegistProps() {
+        this._registGroup = {
             address: "",
             detailAddress: "",
+            email: "",
             firstHpNo: "",
             firstTelNo: "None",
             lastHpNo: "",
@@ -183,9 +223,9 @@ class GroupStore {
             this._groupList = res;
         });
     }
-    // 단체 등록 요청 (작업중)
-    async resistGroupList() {
-        const res = await resistGroup(this.resistGroup);
+    // 단체 등록 요청
+    async registGroupList() {
+        const res = await registGroup(this.registGroup);
         runInAction(() => {
             this._requestResult = res;
             if (this.requestResult === 200) {
@@ -227,15 +267,10 @@ class GroupStore {
         });
     }
     // 이메일 중복 체크
-    async emailCheck() {
-        const res = await dupEmailCheck(this.emailProps);
+    async emailCheck(emailProps) {
+        const res = await dupEmailCheck(emailProps);
         runInAction(() => {
-            this._requestResult = res;
-            if (this.requestResult === 200) {
-                alert('사용 가능.');
-            } else {
-                alert('중복된 이메일.');
-            }
+            this._checkEmailRes = res;
         })
     }
 

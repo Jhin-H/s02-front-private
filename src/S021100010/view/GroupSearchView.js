@@ -131,9 +131,10 @@ function GroupSearchView (props) {
             alert('다시 시도해 주세요.');
         }
     }
-    const clickResist = async () => {
+    // 등록 모달창 오픈
+    const clickRegist = async () => {
         groupStore.initSelectGroup(); // 이전에 조회된 단체 정보 초기화
-        groupStore.initResistProps(); // 이전 등록창에 작성되었던 데이터 초기화
+        groupStore.initRegistProps(); // 이전 등록창에 작성되었던 데이터 초기화
         openModal();
     }
 
@@ -148,7 +149,7 @@ function GroupSearchView (props) {
             </div>
             <div className="layer2-icon">
                 <div className="iconWrap-left">
-                    <ImgPrimaryBtn iconText={'등록'} onClick={clickResist}/>
+                    <ImgPrimaryBtn iconText={'등록'} onClick={clickRegist}/>
                     <ImgPrimaryBtn iconText={"수정"} onClick={clickUpdate}/>
                     <ImgPrimaryBtn iconText={"삭제"} onClick={clickDelete}/>
                 </div>

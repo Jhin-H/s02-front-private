@@ -5,10 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'mobx-react';
 import GroupStore from './S021100010/store/GroupStore';
+import MemberStore from './S021100030/store/MemberStore';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Provider groupStore = { GroupStore }>
+  <Provider groupStore = { GroupStore } memberStore = { MemberStore }>
     <App />
   </Provider>
 );

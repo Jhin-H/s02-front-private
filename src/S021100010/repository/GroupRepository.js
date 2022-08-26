@@ -16,8 +16,8 @@ const checkGroup = async (checkedOrgId) => {
     return res.data.data
 }
 // 단체 등록
-const resistGroup = async (resistData) => {
-    const res = await axios.post('/rest/v1/s021100020/org', resistData);
+const registGroup = async (registData) => {
+    const res = await axios.post('/rest/v1/s021100020/org', registData);
     return res.status;
 }
 // 단체 수정
@@ -32,10 +32,10 @@ const deleteGroup = async (orgIdList) => {
 }
 // 이메일 중복 체크
 const dupEmailCheck = async (emailProps) => {
-    const res = await axios.get('/rest/v1/s021100010/dup-check-email', {params: {
+    const res = await axios.get('/rest/v1/s021100020/dup-check-email', {params: {
         email: emailProps
     }});
-    return res.status;
+    return res.data.data;
 }
 
-export { getGroupList, checkGroup, resistGroup, updateGroup, deleteGroup, dupEmailCheck };
+export { getGroupList, checkGroup, registGroup, updateGroup, deleteGroup, dupEmailCheck };

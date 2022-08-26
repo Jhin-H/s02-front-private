@@ -32,45 +32,42 @@ function OrgRegModal({ closeModal, store }) {
     let hpNum1 = ''
     let hpNum2 = ''
     let hpNum3 = ''
-    // let email1 = ''
-    // let email2 = ''
+    let email1 = ''
+    let email2 = ''
     if(groupStore.selectGroup.orgId) {
-        hpNum1 = groupStore.selectGroup.hpNo.split('-')[0]
-        hpNum2 = groupStore.selectGroup.hpNo.split('-')[1]
-        hpNum3 = groupStore.selectGroup.hpNo.split('-')[2]
-        // email1 = groupStore.selectGroup.email.split('@')[0]
-        // email2 = groupStore.selectGroup.email.split('@')[1]
+        if (groupStore.selectGroup.hpNo) {
+            hpNum1 = groupStore.selectGroup.hpNo.split('-')[0]
+            hpNum2 = groupStore.selectGroup.hpNo.split('-')[1]
+            hpNum3 = groupStore.selectGroup.hpNo.split('-')[2]
+        }
+        if (groupStore.selectGroup.email) {
+            email1 = groupStore.selectGroup.email.split('@')[0]
+            email2 = groupStore.selectGroup.email.split('@')[1]
+        }
     } else {}
 
     const [orgName, setOrgName] = useState(groupStore.selectGroup.orgName || '');
     const [memberName, setMemberName] = useState(groupStore.selectGroup.memberName || '');
-    const [email, setEmail] = useState(groupStore.selectGroup.email || ''); // 이메일 나중에 수정할 것
-    // const [email, setEmail] = useState('');
-    // const [emailId, setEmailId] = useState(email1 || '');
-    // const [emailDomain, setEmailDomain] = useState(email2 || '');
+    const [emailId, setEmailId] = useState(email1 || '');
+    const [emailDomain, setEmailDomain] = useState(email2 || '');
     const [firstHpNo, setFirstHpNo] = useState(hpNum1 || '');
     const [middleHpNo, setMiddleHpNo] = useState(hpNum2 || '');
     const [lastHpNo, setLastHpNo] = useState(hpNum3 || '');
     const [zipCode, setZipCode] = useState(groupStore.selectGroup.zipCode || '');
     const [address, setAddress] = useState(groupStore.selectGroup.address || '');
     const [detailAddress, setDetailAddress] = useState(groupStore.selectGroup.detailAddress || '');
+    const [emailMs, setEmailMs] = useState('');
 
     const typingText = (e) => {
         if(e.target.name === 'orgName') {
             setOrgName(e.target.value);
         } else if(e.target.name === 'memberName') {
             setMemberName(e.target.value);
-        } else if (e.target.name === 'email') {
-            setEmail(e.target.value);
-        } // 이메일 나중에 수정할 것
-        // else if(e.target.name === 'emailId') {
-        //     setEmailId(e.target.value);
-        //     setEmail(emailId+'@'+emailDomain);
-        // } else if(e.target.name === 'emailDomain') {
-        //     setEmailDomain(e.target.value);
-        //     setEmail(emailId+'@'+emailDomain);
-        // }
-        else if(e.target.name === 'firstHpNo') {
+        } else if(e.target.name === 'emailId') {
+            setEmailId(e.target.value);
+        } else if(e.target.name === 'emailDomain') {
+            setEmailDomain(e.target.value);
+        } else if(e.target.name === 'firstHpNo') {
             setFirstHpNo(e.target.value);
         }else if(e.target.name === 'middleHpNo') {
             setMiddleHpNo(e.target.value);
@@ -85,22 +82,45 @@ function OrgRegModal({ closeModal, store }) {
         }
     }
 
-    const onSetResistProps = (e) => {
+    const onSetRegistProps = async (e) => {
+        typingText(e);
         if(groupStore.selectGroup.orgId) {
-            typingText(e);
-            groupStore.setUpdateProps(e.target.name, e.target.value);
+            await groupStore.setUpdateProps(e.target.name, e.target.value);
+            if (e.target.name === 'emailId' || e.target.name === 'emailDomain') {
+                if (groupStore.checkEmailRes) {
+                    setEmailMs('사용 가능');
+                } else {
+                    setEmailMs('사용 불가능');
+                }
+            }
         } else {
-            typingText(e);
-            groupStore.setResistProps(e.target.name, e.target.value);
+            await groupStore.setRegistProps(e.target.name, e.target.value);
+            if (e.target.name === 'emailId' || e.target.name === 'emailDomain') {
+                if (groupStore.checkEmailRes) {
+                    setEmailMs('사용 가능');
+                } else {
+                    setEmailMs('사용 불가능');
+                }
+            }
         }
     }
 
     const onClickSubmit = async () => {
-        // 항목 비어있으면 채우라는 경고창 출력, 이메일 중복체크, 항목마다 조건 주기, 조건 만족하면 등록/수정 실행
+        // 항목 비어있으면 채우라는 경고창 출력, 항목마다 조건 주기, 조건 만족하면 등록/수정 실행
         if(groupStore.selectGroup.orgId) {
-            await groupStore.updateSelectGroup();
+            if (groupStore.checkEmailRes) {
+                await groupStore.updateSelectGroup();
+            } else {
+                alert('이메일이 중복됩니다.\n이메일을 다시 작성해주세요.');
+                return;
+            }
         } else {
-            await groupStore.resistGroupList();
+            if (groupStore.checkEmailRes) {
+                await groupStore.registGroupList();
+            } else {
+                alert('이메일이 중복됩니다.\n이메일을 다시 작성해주세요.');
+                return;
+            }
         }
         closeModal();
     }
@@ -125,40 +145,32 @@ function OrgRegModal({ closeModal, store }) {
                                 placeholder="단체명"
                                 name='orgName'
                                 value={orgName}
-                                onChange={onSetResistProps}
+                                onChange={onSetRegistProps}
                             />
                             <Input
                                 label="이름"
                                 placeholder="이름"
                                 name='memberName'
                                 value={memberName}
-                                onChange={onSetResistProps}
+                                onChange={onSetRegistProps}
                             />
                             <div className='email-input-wrapper'>
                                 <Input
                                     label="이메일"
                                     placeholder="이메일"
                                     type="text"
-                                    name='email'
-                                    value={email}
-                                    onChange={onSetResistProps}
-                                />
-                                {/* <Input
-                                    label="이메일"
-                                    placeholder="이메일"
-                                    type="text"
                                     name='emailId'
                                     value={emailId}
-                                    onChange={onSetResistProps}
-                                /> */}
-                                {/* <div className='at'>@</div> */}
+                                    onChange={onSetRegistProps}
+                                />
+                                <div className='at'>@</div>
                                 <Input
                                     type="text"
                                     name='emailDomain'
-                                    // value={emailDomain}
-                                    onChange={onSetResistProps}
+                                    value={emailDomain}
+                                    onChange={onSetRegistProps}
                                 />
-                                <SelectBox/>
+                                <SelectBox label={emailMs}/>
                             </div>
                             <div className="hp-input-wrapper">
                                 {/* <SelectBox label="핸드폰" name='firstHpNo'/> */}
@@ -167,19 +179,19 @@ function OrgRegModal({ closeModal, store }) {
                                     type="text"
                                     name='firstHpNo'
                                     value={firstHpNo}
-                                    onChange={onSetResistProps}
+                                    onChange={onSetRegistProps}
                                 />
                                 <Input
                                     type="text"
                                     name='middleHpNo'
                                     value={middleHpNo}
-                                    onChange={onSetResistProps}
+                                    onChange={onSetRegistProps}
                                 />
                                 <Input
                                     type="text"
                                     name='lastHpNo'
                                     value={lastHpNo}
-                                    onChange={onSetResistProps}
+                                    onChange={onSetRegistProps}
                                 />
                             </div>
                             {/* 우편번호 아이콘 클릭시 카카오API 주소찾기 */}
@@ -189,20 +201,20 @@ function OrgRegModal({ closeModal, store }) {
                                     placeholder="우편번호"
                                     name='zipCode'
                                     value={zipCode}
-                                    onChange={onSetResistProps}
+                                    onChange={onSetRegistProps}
                                     icon={<SearchIcon onClick={openPostCodeModal}/>}
                                 />
                                 <Input
                                     placeholder="주소"
                                     name='address'
                                     value={address}
-                                    onChange={onSetResistProps}
+                                    onChange={onSetRegistProps}
                                 />
                                 <Input
                                     placeholder="상세주소"
                                     name='detailAddress'
                                     value={detailAddress}
-                                    onChange={onSetResistProps}
+                                    onChange={onSetRegistProps}
                                 />
                             </div>
                         </div>

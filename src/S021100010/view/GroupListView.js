@@ -101,7 +101,7 @@ function GroupListView (props) {
                             <td>{value.orgId}</td>
                             <td>{value.orgName}</td>
                             <td>{value.memberName}</td>
-                            <td>{value.telNo}</td>
+                            <td>{value.hpNo}</td>
                             <td>{value.email}</td>
                             <td>{value.memberCnt}</td>
                         </tr>
