@@ -1,5 +1,5 @@
 import { action, observable, makeObservable, runInAction } from 'mobx';
-import { retrieveMemberList, registerMember, updateMemberInfo, updateMemberTp, deleteMember } from '../repository/MemberRepository';
+import { retrieveMemberList, registerMember, updateMemberInfo, updateMemberTp, deleteMember, retrieveCode } from '../repository/MemberRepository';
 
 class MemberStore {
 
@@ -9,15 +9,15 @@ class MemberStore {
 
     // 멤버리스트 검색 조건
     @observable
-    _retrieveMemList = {
+    _searchProps = {
         fromDt: '',
         memberName: '',
         memberTp: '',
         orgId : '',
         toDt: ''
     }
-    get retrieveMemList() {
-        return this._retrieveMemList;
+    get searchProps() {
+        return this._searchProps;
     }
     // 멤버리스트 검색 결과  
     @observable
@@ -60,6 +60,21 @@ class MemberStore {
     get updateMember() {
         return this._updateMember;
     }
+    // 회원 구분 수정 데이터
+    @observable
+    _updateTp = {
+        memberId: "",
+        memberTp: ""
+    }
+    get updateTp() {
+        return this._updateTp;
+    }
+    // 코드 조회 결과
+    @observable
+    _resCode = []
+    get resCode() {
+        return this._resCode;
+    }
     // 요청 후 반환되는 status
     @observable
     _requestResult
@@ -71,11 +86,11 @@ class MemberStore {
     @action
     async getRetrieveMemList() {
         const res = await retrieveMemberList(
-            this._retrieveMemList.fromDt,
-            this._retrieveMemList.memberName,
-            this._retrieveMemList.memberTp,
-            this._retrieveMemList.orgId,
-            this._retrieveMemList.toDt
+            this._searchProps.fromDt,
+            this._searchProps.memberName,
+            this._searchProps.memberTp,
+            this._searchProps.orgId,
+            this._searchProps.toDt
             );
         runInAction(() => {
             this._resultRetrieveMem = res;
@@ -110,8 +125,8 @@ class MemberStore {
     // 멤버 회원구분 수정
     @action
     async updateMemTp() {
-        // 선택한 항목의 memberId 매개변수로 넣기
-        const res = await updateMemberTp();
+        // 선택한 항목의 memberId, 변경할 구분 코드 매개변수로 넣기
+        const res = await updateMemberTp(this.updateTp);
         runInAction(() => {
             this._requestResult = res;
             if (this.requestResult === 200) {
@@ -133,6 +148,15 @@ class MemberStore {
             } else {
                 alert('잠시 후 다시 시도해주세요.\n같은 문제가 반복해서 발생할 경우 문의 부탁드립니다.');
             }
+        })
+    }
+    // 코드 조회
+    @action
+    async retrieveCd() {
+        // 나중에 orgId 매개변수로 넣기
+        const res = await retrieveCode();
+        runInAction(() => {
+            this._resCode = res;
         })
     }
 } 

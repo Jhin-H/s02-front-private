@@ -33,11 +33,11 @@ function MemRegModal({ closeModal, store }) {
         <div className="modalBg">
         <div className='modalBox'>
             <MemRegModalWrapper>
-                <div class="inner">
+                <div className="inner">
                     <h1>안녕하세요.</h1>
-                    <p class="modalSubTitle">이곳에서 새로운 회원정보를 기입하여 단체를 새로 등록할 수 있습니다.</p>
+                    <p className="modalSubTitle">이곳에서 새로운 회원정보를 기입하여 단체를 새로 등록할 수 있습니다.</p>
                     <div className='closeBtn' onClick={closeModal}>
-                        <i class="fa-solid fa-xmark"></i>
+                        <i className="fa-solid fa-xmark"></i>
                     </div>
                     <div className="form">
                         <div className='name-input-wrapper'>
@@ -86,7 +86,7 @@ function MemRegModal({ closeModal, store }) {
                             />
                         </div>
                     </div> 
-                    <div class="btnWrap">
+                    <div className="btnWrap">
                         <div onClick={onClickSubmit}>
                             <PrimaryBtn/>
                         </div>

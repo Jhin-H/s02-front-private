@@ -37,6 +37,7 @@ const SelectBoxContainer = styled.div`
         text-align: center;
         margin-right:10px;
         margin-bottom:0;
+        color: #ababab;
     }
     label {
         position:absolute;
@@ -46,15 +47,15 @@ const SelectBoxContainer = styled.div`
 
 const emailOptions = [
     { value: "", name: "직접 입력" },
-	{ value: "@naver.com", name: "@naver.com" },
-	{ value: "@daum.net", name: "@daum.net" },
-	{ value: "@google.com", name: "@google.com" }
+	{ value: "naver.com", name: "naver.com" },
+	{ value: "daum.net", name: "daum.net" },
+	{ value: "google.com", name: "google.com" }
 ];
 const SelectBox = (props) => {
     return (
         <SelectBoxContainer>
             <label>{props.label}</label>
-            <select>
+            <select onChange={(e) => props.onChange(e)}>
                 {props.options.map((v) => (
                     <option key={v.value} value={v.value}>{v.name}</option>
                 ))}
@@ -67,6 +68,7 @@ function OrgRegModal({ closeModal, store }) {
 
     const groupStore = store;
 
+    // 이메일, 핸드폰 번호 쪼개어 넣기
     let hpNum1 = ''
     let hpNum2 = ''
     let hpNum3 = ''
@@ -96,6 +98,7 @@ function OrgRegModal({ closeModal, store }) {
     const [detailAddress, setDetailAddress] = useState(groupStore.selectGroup.detailAddress || '');
     const [emailMs, setEmailMs] = useState('');
 
+    // 입력 할 때, State에 파라미터 저장
     const typingText = (e) => {
         if(e.target.name === 'orgName') {
             setOrgName(e.target.value);
@@ -119,7 +122,7 @@ function OrgRegModal({ closeModal, store }) {
             setDetailAddress(e.target.value);
         }
     }
-
+    // 직접 입력할 때, State에 저장된 데이터 Store로 보내기
     const onSetRegistProps = async (e) => {
         typingText(e);
         if(groupStore.selectGroup.orgId) {
@@ -139,6 +142,25 @@ function OrgRegModal({ closeModal, store }) {
                 } else {
                     setEmailMs('사용 불가능');
                 }
+            }
+        }
+    }
+    // SelectBox에서 도매인 변경할 때, 파라미터 반영, 이메일 체크
+    const domainChange = async (e) => {
+        setEmailDomain(e.target.value);
+        if(groupStore.selectGroup.orgId) {
+            await groupStore.setUpdateProps('emailDomain', e.target.value);
+            if (groupStore.checkEmailRes) {
+                setEmailMs('사용 가능');
+            } else {
+                setEmailMs('사용 불가능');
+            }
+        } else {
+            await groupStore.setRegistProps('emailDomain', e.target.value);
+            if (groupStore.checkEmailRes) {
+                setEmailMs('사용 가능');
+            } else {
+                setEmailMs('사용 불가능');
             }
         }
     }
@@ -208,7 +230,12 @@ function OrgRegModal({ closeModal, store }) {
                                     value={emailDomain}
                                     onChange={onSetRegistProps}
                                 />
-                                <SelectBox label={emailMs} options={emailOptions}/>
+                                <SelectBox
+                                    name='emailDomainBox'
+                                    label={emailMs}
+                                    options={emailOptions}
+                                    onChange={domainChange}
+                                />
                             </div>
                             <div className="hp-input-wrapper">
                                 <Input

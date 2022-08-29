@@ -78,8 +78,8 @@ const Input = ({...props}) => {
 const ImgSecondaryBtn = (props) => {
     return (
         <Container>
-            <div className="ImgSecondaryBtn" onClick={props.clickEvent}>
-            <i className="fa-solid fa-magnifying-glass"></i>
+            <div className="ImgSecondaryBtn" onClick={props.onClick}>
+                <i className="fa-solid fa-magnifying-glass"></i>
             </div>
         </ Container>
     )
@@ -145,7 +145,7 @@ function GroupSearchView (props) {
             <div className="layer1">
                 <Input placeholder="단체명" name='orgName' onChange={onSetSearchProps}/>
                 <Input placeholder="대표자" name='memberName' onChange={onSetSearchProps}/>
-                <ImgSecondaryBtn clickEvent={clickImgSecondaryBtn}/>
+                <ImgSecondaryBtn onClick={clickImgSecondaryBtn}/>
             </div>
             <div className="layer2-icon">
                 <div className="iconWrap-left">

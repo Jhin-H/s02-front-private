@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const SelectBoxContainer = styled.div`
     position:relative;
+    
     select{
         border-top: none;
         border-left: none;
@@ -15,22 +16,26 @@ const SelectBoxContainer = styled.div`
         font-size: 15px;
         text-align: center;
         margin-right:10px;
+        color: #ababab;
         margin-bottom:0;
     }
+
     label {
+
         position:absolute;
         top:-35px;
     }
+
 `;
 
-const SelectBox = (props) => {
+
+const SelectBox = ({ label, options = [], ...props }) => {
+
     return (
         <SelectBoxContainer>
-            <label>{props.label}</label>
+            <label>{label}</label>
             <select>
-                {props.options.map((v) => (
-                    <option key={v.value} value={v.value}>{v.name}</option>
-                ))}
+               
             </select>
         </SelectBoxContainer>
     )
