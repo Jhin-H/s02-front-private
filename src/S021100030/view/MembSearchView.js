@@ -68,6 +68,7 @@ const Container = styled.div`
         filter:opacity(0.35);
         cursor: pointer;
     }
+   
 `;
 const SelectBoxContainer = styled.div`
     position:relative;
@@ -89,6 +90,8 @@ const SelectBoxContainer = styled.div`
         position:absolute;
         top:-35px;
     }
+
+    
 `;
 
 const SelectBox = (props) => {
@@ -210,8 +213,17 @@ const MembSearchView = (props) => {
                     </div>
                     <div className="iconWrap-right">
                         <ImgPrimaryBtn iconText={"다운로드"} onClick={clickDown}/>
-                        <ImgPrimaryBtn iconText={"업로드"} onClick={clickUp}/>
-                        <input type='file' onChange={(e) => clickUp(e)}/>
+                        <div className="uploadIcon">
+                            <label for="inputFile">
+                                <ImgPrimaryBtn iconText={"업로드"} onClick={clickUp}/>
+                            </label>
+                            <input type='file'
+                            id='inputFile' 
+                            style={{display:"none"}}
+                            onChange={(e) => clickUp(e)}/>
+                        </div>
+                        <Input/>
+                           
                     </div>
                 </div>
                 <ModalPortal>
