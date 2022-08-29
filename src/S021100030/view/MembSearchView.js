@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { observer, inject } from "mobx-react";
 import Input from '../../common/elements/Input';
 import ImgPrimaryBtn from  "../../common/elements/ImgPrimaryBtn"
@@ -92,7 +92,9 @@ const SelectBoxContainer = styled.div`
 `;
 
 const SelectBox = (props) => {
-    props.store.retrieveCd();
+    useEffect(() => {
+        props.store.retrieveCd();
+    });
     console.log(props.store.resCode);
     return (
         <SelectBoxContainer>
@@ -122,9 +124,9 @@ const MembSearchView = (props) => {
     const excelFileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
     const excelFileExtension = '.xlsx';
     const excelFileName = '회원관리 양식';
-
     
     const clickImgSecondaryBtn = () => {
+        console.log('clickSearch');
         memberStore.getRetrieveMemList();
     }
     const clickRegist = async () => {
@@ -140,12 +142,11 @@ const MembSearchView = (props) => {
     const clickDeleteR = async () => {
     }
     const clickDown = () => {
-        const workSheet = XLSX.utils.aoa_to_sheet([
-            ['', '* 회원명', '* e-mail', '* 핸드폰 번호', '생년월일', '우편번호', '주소', '상세주소', '계좌번호', '거래은행'],
-            ['*Start'],
-            [],
-            [],
-            ['*End']
+        const workSheet = XLSX.utils.json_to_sheet([
+            {'': '* Start', '회원명': '', 'e-mail': '', '핸드폰 번호': '', '생년월일': '', '우편번호': '', '주소': '', '상세주소': '', '계좌번호': '', '거래은행': ''},
+            {'': '', '회원명': '', 'e-mail': '', '핸드폰 번호': '', '생년월일': '', '우편번호': '', '주소': '', '상세주소': '', '계좌번호': '', '거래은행': ''},
+            {'': '', '회원명': '', 'e-mail': '', '핸드폰 번호': '', '생년월일': '', '우편번호': '', '주소': '', '상세주소': '', '계좌번호': '', '거래은행': ''},
+            {'': '* End', '회원명': '', 'e-mail': '', '핸드폰 번호': '', '생년월일': '', '우편번호': '', '주소': '', '상세주소': '', '계좌번호': '', '거래은행': ''}
         ]);
         XLSX.utils.sheet_add_aoa(
             workSheet,
@@ -157,7 +158,7 @@ const MembSearchView = (props) => {
                 ['- 생년월일: 8자리 숫자만 입력(19901231)'],
                 ['- e-mail: \'@\'를 포함해서 입력(email@naver.com)'],
                 ['- *Start가 있는 2행 B열부터 입력'],
-                ['- *End가 있는 행으로 마무리, 필요한 데이터는 행 삽입으로 중간에 추가해주세요']
+                ['- *End가 있는 행으로 마무리, 필요한 데이터는 중간에 행 삽입으로 추가해주세요']
             ],
             {origin: -1}
         ); // workSheet에서 한 줄 아래(origin:-1)에 데이터 추가
@@ -170,16 +171,20 @@ const MembSearchView = (props) => {
         console.log('upload');
         let input = e.target;
         let reader = new FileReader();
-        reader.onload = function(){
+        reader.onload = () => {
             let fileData = reader.result;
             let wb = XLSX.read(fileData, {type : 'binary'});
             wb.SheetNames.forEach((sheetName) => {
                 let rowObj = XLSX.utils.sheet_to_json(wb.Sheets[sheetName]);
+                console.log(JSON.stringify(rowObj));
+                // 여기서 rowObj를 이용해서 데이터를 등록
             });
         };
         reader.readAsBinaryString(input.files[0]);
     }
     
+    memberStore.getRetrieveMemList();
+
     return (
             <div className="searchBox">
                 <div className="layer1">
