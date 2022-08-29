@@ -69,7 +69,7 @@ const MembSearchView = (props) => {
                
                 <ModalPortal>
                     <MemRegModal
-                        onSubmitModal={onSubmitModal}
+                        // onSubmitModal={onSubmitModal}
                         closeModal={closeModal}
                     />
                 </ModalPortal>
