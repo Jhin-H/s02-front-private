@@ -33,10 +33,12 @@ const SelectBox = ({ label, options = [], ...props }) => {
 
     return (
         <SelectBoxContainer>
-            <label>{label}</label>
-            <select>
-               
-            </select>
+            <label>{props.label}</label>
+            {/* <select>
+                {props.options.map((v) => (
+                    <option key={v.value} value={v.value}>{v.name}</option>
+                ))}
+            </select> */}
         </SelectBoxContainer>
     )
 };

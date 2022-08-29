@@ -53,6 +53,7 @@
     .iconWrap-right {
 
         display:flex;
+        align-items: baseline;
 
     }
 
