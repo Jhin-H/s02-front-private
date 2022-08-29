@@ -77,7 +77,6 @@ const Header = () => {
 
                 <div className="headerInner">
                   
-
                     <div className="topLogo">
                             <img src="/img/logo3-w.png" alt="로고"></img>
                     </div>
@@ -87,7 +86,7 @@ const Header = () => {
                        <div className="userProfile"></div>
                         <p className="userName">username</p>
                           
-                          <div className="login"><i className="fa-solid fa-user"></i>로그인</div>
+                          <div className="login"><i class="fa-solid fa-arrow-right-to-bracket"></i>로그인</div>
                           <div className="logout"><i className="fa-solid fa-power-off"></i>로그아웃</div>
                       </div>
 

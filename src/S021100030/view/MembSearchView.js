@@ -6,7 +6,7 @@ import SelectBox from "../../common/elements/SelectBox";
 import ImgPrimaryBtn from  "../../common/elements/ImgPrimaryBtn"
 import MemRegModal from "../../S021100040/view/MemRegModal";
 import useModal from "../../common/hooks/useModal";
-import "../../common/css/searchBox.css";
+
 
 const MembSearchView = (props) => {
     
@@ -23,42 +23,61 @@ const MembSearchView = (props) => {
     }
 
     return (
-        <div className="searchBox">
-            <div className="layer1">
-                <Input
-                    type="date"
-                    data-placeholder="등록일자"
-                    required aria-required="true"
-                />
-                <div className="wave">~</div>
-                <Input
-                    type="date"
-                    data-placeholder="등록일자"
-                    required aria-required="true"
-                />
-            </div>
-            <div className="layer2">
-                <Input placeholder="회원명"/>
-                <SelectBox placeholder="회원구분"/>
-                <ImgSecondaryBtn/>
-            </div>
-            <div className="layer3-icon">
-                <div className="iconWrap-left">
-                    <ImgPrimaryBtn iconText={'등록'} onClick={clickRegist}/>
-                    <ImgPrimaryBtn iconText={"수정"} onClick={clickUpdate}/>
-                    <ImgPrimaryBtn iconText={"삭제"} onClick={clickDelete}/>
-                    <ImgPrimaryBtn iconText={"운영자등록"}/>
-                    <ImgPrimaryBtn iconText={"운영자삭제"}/>
+
+            <div className="searchBox">
+
+                <div className="layer1">
+
+                    <Input
+                        type="date"
+                        data-placeholder="등록일자"
+                        required aria-required="true"
+                    />
+
+                    <div className="wave">~</div>
+
+                    <Input
+                        type="date"
+                        data-placeholder="등록일자"
+                        required aria-required="true"
+                    />
+
+                    <Input
+                        placeholder="회원명"
+                    />
+
+                    <SelectBox/>
+                    <ImgSecondaryBtn/>
                 </div>
-                <div className="iconWrap-right">
-                    <ImgPrimaryBtn iconText={"다운로드"}/>
-                    <ImgPrimaryBtn iconText={"업로드"}/>
+                <div className="layer2-icon">
+
+                    <div className="iconWrap-left">
+                        <ImgPrimaryBtn iconText={'등록'} onClick={openModal}/>
+                        <ImgPrimaryBtn iconText={"수정"}/>
+                        <ImgPrimaryBtn iconText={"삭제"}/>
+                        <ImgPrimaryBtn iconText={"운영자등록"}/>
+                        <ImgPrimaryBtn iconText={"운영자삭제"}/>
+                    </div>
+
+                    <div className="iconWrap-right">
+
+                        <ImgPrimaryBtn iconText={"다운로드"}/>
+                        <ImgPrimaryBtn iconText={"업로드"}/>
+                    </div>
+
                 </div>
+               
+                <ModalPortal>
+                    <MemRegModal
+                        onSubmitModal={onSubmitModal}
+                        closeModal={closeModal}
+                    />
+                </ModalPortal>
+
             </div>
-            <ModalPortal>
-                <MemRegModal store={memberStore} closeModal={closeModal}/>
-            </ModalPortal>
-        </div>
+
+
+  
     );
 }
 

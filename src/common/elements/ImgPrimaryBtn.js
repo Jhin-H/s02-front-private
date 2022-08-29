@@ -2,13 +2,13 @@ import React from "react";
 import styled from 'styled-components';
 
 const Icon = styled.div`
-    width: 50px;
-    height: 50px;
+    width: 52px;
+    height: 52px;
     border-radius: 100%;
     border: 1.5px solid #333;
     margin-right: 10px;
     color: #333;
-    font-size:10px;
+    font-size: 10px;
     position: relative;
 
 
