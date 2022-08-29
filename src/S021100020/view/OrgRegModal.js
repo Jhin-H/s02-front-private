@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Input from '../../common/elements/Input';
-import SelectBox from "../../common/elements/SelectBox";
 import PrimaryBtn from "../../common/elements/PrimaryBtn"
 import SecondaryBtn from "../../common/elements/SecondaryBtn"
 import { ReactComponent as SearchIcon } from "../../common/lib/img/magnifierIcon.svg";
@@ -24,6 +23,45 @@ const OrgRegModalWrapper = styled.div`
         align-items:baseline;
     }
 `;
+const SelectBoxContainer = styled.div`
+    position:relative;
+    select{
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: #333 1.5px solid;
+        outline: none;
+        width: 200px;
+        height: 26.5px;
+        font-size: 15px;
+        text-align: center;
+        margin-right:10px;
+        margin-bottom:0;
+    }
+    label {
+        position:absolute;
+        top:-35px;
+    }
+`;
+
+const emailOptions = [
+    { value: "", name: "직접 입력" },
+	{ value: "@naver.com", name: "@naver.com" },
+	{ value: "@daum.net", name: "@daum.net" },
+	{ value: "@google.com", name: "@google.com" }
+];
+const SelectBox = (props) => {
+    return (
+        <SelectBoxContainer>
+            <label>{props.label}</label>
+            <select>
+                {props.options.map((v) => (
+                    <option key={v.value} value={v.value}>{v.name}</option>
+                ))}
+            </select>
+        </SelectBoxContainer>
+    )
+};
 
 function OrgRegModal({ closeModal, store }) {
 
@@ -170,10 +208,9 @@ function OrgRegModal({ closeModal, store }) {
                                     value={emailDomain}
                                     onChange={onSetRegistProps}
                                 />
-                                <SelectBox label={emailMs}/>
+                                <SelectBox label={emailMs} options={emailOptions}/>
                             </div>
                             <div className="hp-input-wrapper">
-                                {/* <SelectBox label="핸드폰" name='firstHpNo'/> */}
                                 <Input
                                     label="핸드폰"
                                     type="text"

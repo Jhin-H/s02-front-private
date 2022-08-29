@@ -39,8 +39,7 @@ const MembSearchView = (props) => {
             </div>
             <div className="layer2">
                 <Input placeholder="회원명"/>
-                <Input placeholder="부서명"/>
-                <SelectBox/>
+                <SelectBox placeholder="회원구분"/>
                 <ImgSecondaryBtn/>
             </div>
             <div className="layer3-icon">
