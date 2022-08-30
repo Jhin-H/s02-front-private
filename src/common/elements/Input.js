@@ -18,7 +18,7 @@ const Container = styled.div`
         height: 25px;
         font-size: 15px;
         text-align: center;
-        color: black;
+        color: #333;
         margin-bottom:20px; 
     }
     input[type="date"]{
@@ -34,10 +34,7 @@ const Container = styled.div`
     input[type="date"]:valid:before{
         display: none;
     }
-    ::placeholder{
-        text-align: center;
-        color: #ababab;
-    }
+   
     label{
         position:absolute;
         top:-35px;

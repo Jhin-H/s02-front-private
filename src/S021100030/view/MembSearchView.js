@@ -25,49 +25,7 @@ const Container = styled.div`
         text-align: center;
         line-height: 30px;
         margin-left: 10px;
-    }
-    input {
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        border-bottom: #333 1.5px solid;
-        outline: none;
-        width: 200px;
-        height: 25px;
-        font-size: 15px;
-        text-align: center;
-        color: black;
-        margin-bottom:20px; 
-    }
-    input[type="date"]{
-        color:#ababab;
-        font-size:15px;
-    }
-    input[type="date"]::before {
-        content:attr(data-placeholder);
-        width:100%;
-        color:#ababab;
-    }
-    input[type="date"]:focus:before,
-    input[type="date"]:valid:before{
-        display: none;
-    }
-    ::placeholder{
-        text-align: center;
-        color: #ababab;
-    }
-    label{
-        position:absolute;
-        top:-35px;
-    }
-    .icon-wrapper {
-        width:18px;
-        position:absolute;
-        top:4px;
-        right:0px;
-        filter:opacity(0.35);
-        cursor: pointer;
-    }
+    }  
    
 `;
 const SelectBoxContainer = styled.div`
@@ -217,7 +175,7 @@ const MembSearchView = (props) => {
                         <ImgPrimaryBtn iconText={"운영자삭제"} onClick={clickDeleteR}/>
                     </div>
                     <div className="iconWrap-right">
-                        <ImgPrimaryBtn iconText={"다운로드"} onClick={clickDown}/>
+                        
                         <div className="uploadIcon">
                             <label for="inputFile">
                                 <ImgPrimaryBtn iconText={"업로드"} onClick={clickUp}/>
@@ -228,6 +186,7 @@ const MembSearchView = (props) => {
                             onChange={(e) => clickUp(e)}/>
                         </div>
                         <Input/>
+                        <ImgPrimaryBtn iconText={"다운로드"} onClick={clickDown}/>
                            
                     </div>
                 </div>
