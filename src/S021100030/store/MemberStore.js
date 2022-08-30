@@ -36,9 +36,14 @@ class MemberStore {
         email: "", // 이메일
         hpNo: "", // 핸드폰
         memberName: "", // 이름
-        orgId: null, // 세션에서 받아옴
-        pwd: "", // 1234 하드코딩
-        zipCode: "" // 우편번호
+        orgId: 39, // 세션에서 받아옴
+        pwd: "1234", // 1234 하드코딩
+        zipCode: "", // 우편번호
+        firstHpNo: "",
+        middleHpNo: "",
+        lastHpNo: "",
+        emailId: "",
+        emailDomain: ""
     }
     get registMember() {
         return this._registMember;
@@ -90,6 +95,48 @@ class MemberStore {
             [name]: value
         }
     }
+    // 등록 폼에 입력된 데이터 할당
+    @action
+    setRegistProps(name, value) {
+        this._registMember = {
+            ...this._registMember,
+            [name]: value
+        }
+        if (name === 'emailId' || name === 'emailDomain') {
+            this._registMember = {
+                ...this._registMember,
+                'email': this.registMember.emailId + '@' + this.registMember.emailDomain
+            }
+        } else if(name === 'firstHpNo' || name === 'middleHpNo' || name === 'lastHpNo') {
+            this._registMember = {
+                ...this._registMember,
+                'hpNo': this.registMember.firstHpNo+this.registMember.middleHpNo+this.registMember.lastHpNo
+            }
+        }
+    }
+    // 등록 데이터 초기화
+    @action
+    initRegistProps() {
+        this._registMember = {
+            accountNo: "",
+            address: "",
+            backNm: "",
+            birth: "",
+            detailAddress: "",
+            email: "",
+            hpNo: "",
+            memberName: "",
+            orgId: 39,
+            pwd: "1234",
+            zipCode: "",
+            firstHpNo: "",
+            middleHpNo: "",
+            lastHpNo: "",
+            emailId: "",
+            emailDomain: ""
+        }
+    }
+
     // 멤버리스트 검색 결과
     @action
     async getRetrieveMemList() {

@@ -141,7 +141,8 @@ const MembSearchView = (props) => {
     }
     // 회원 등록
     const clickRegist = async () => {
-        // 이전에 조회된 정보, 등록창에 작성된 정보 초기화
+        // 이전에 조회된 정보 초기화(수정때문에 하는 것)
+        memberStore.initRegistProps();
         openModal();
     }
     // 회원 수정

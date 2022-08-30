@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Input from '../../common/elements/Input';
 import PrimaryBtn from "../../common/elements/PrimaryBtn"
 import SecondaryBtn from "../../common/elements/SecondaryBtn"
 import "../../common/css/modal.css"
 import styled from 'styled-components';
 import { ReactComponent as SearchIcon } from "../../common/lib/img/magnifierIcon.svg";
+import { toJS } from 'mobx';
 
 const MemRegModalWrapper = styled.div`
     width: 90%;
@@ -73,6 +74,59 @@ function MemRegModal({ closeModal, store }) {
 
     const memberStore = store;
 
+    const [memberName, setMemberName] = useState('');
+    const [birth, setBirth] = useState('');
+    const [firstHpNo, setFirstHpNo] = useState('');
+    const [middleHpNo, setMiddleHpNo] = useState('');
+    const [lastHpNo, setLastHpNo] = useState('');
+    const [zipCode, setZipCode] = useState('');
+    const [address, setAddress] = useState('');
+    const [detailAddress, setDetailAddress] = useState('');
+    const [emailId, setEmailId] = useState('');
+    const [emailDomain, setEmailDomain] = useState('');
+    const [accountNo, setAccountNo] = useState('');
+    const [backNm, setBackNm] = useState('');
+
+    // 입력 할 때, State에 파라미터 저장
+    const typingText = (e) => {
+        if(e.target.name === 'memberName') {
+            setMemberName(e.target.value);
+        } else if(e.target.name === 'birth') {
+            setBirth(e.target.value);
+        } else if(e.target.name === 'emailId') {
+            setEmailId(e.target.value);
+        } else if(e.target.name === 'emailDomain') {
+            setEmailDomain(e.target.value);
+        } else if(e.target.name === 'firstHpNo') {
+            setFirstHpNo(e.target.value);
+        }else if(e.target.name === 'middleHpNo') {
+            setMiddleHpNo(e.target.value);
+        } else if(e.target.name === 'lastHpNo') {
+            setLastHpNo(e.target.value);
+        } else if(e.target.name === 'zipCode') {
+            setZipCode(e.target.value);
+        } else if(e.target.name === 'address') {
+            setAddress(e.target.value);
+        } else if(e.target.name === 'detailAddress') {
+            setDetailAddress(e.target.value);
+        } else if(e.target.name === 'accountNo') {
+            setAccountNo(e.target.value);
+        } else if(e.target.name === 'backNm') {
+            setBackNm(e.target.value);
+        }
+    }
+    // 직접 입력할 때, State에 저장된 데이터 Store로 보내기
+    const onSetRegistProps = async (e) => {
+        typingText(e);
+        await memberStore.setRegistProps(e.target.name, e.target.value);
+        console.log(toJS(memberStore.registMember));
+    }
+    // SelectBox에서 도매인 변경할 때, 파라미터 반영
+    const domainChange = async (e) => {
+        setEmailDomain(e.target.value);
+        await memberStore.setRegistProps('emailDomain', e.target.value);
+    }
+
     const onClickSubmit = async () => {
         closeModal();
     }
@@ -95,6 +149,9 @@ function MemRegModal({ closeModal, store }) {
                             <Input
                                 label="이름"
                                 placeholder="이름"
+                                name="memberName"
+                                value={memberName}
+                                onChange={onSetRegistProps}
                             />
                             <SelectBox label="회원구분" store={memberStore}/>
                         </div>
@@ -102,46 +159,73 @@ function MemRegModal({ closeModal, store }) {
                             <Input
                                 label="생년월일"
                                 placeholder="생년월일"
+                                name="birth"
+                                value={birth}
+                                onChange={onSetRegistProps}
                             />
-                            <SelectBox label="부서"/>
                         </div>
                         <div className="hp-input-wrapper">
-                            <Input type="text" label="핸드폰"/>
-                            <Input type="text"/>
-                            <Input type="text"/>
+                            <Input type="text" label="핸드폰" name="firstHpNo" value={firstHpNo} onChange={onSetRegistProps}/>
+                            <Input type="text" name="middleHpNo" value={middleHpNo} onChange={onSetRegistProps}/>
+                            <Input type="text" name="lastHpNo" value={lastHpNo} onChange={onSetRegistProps}/>
                         </div>
                         <div className="address-input-wrapper">
                             <Input
                                 label="주소" 
                                 placeholder="우편번호"
+                                name="zipCode"
+                                value={zipCode}
+                                onChange={onSetRegistProps}
                                 icon={<SearchIcon onClick={openPostCodeModal}/>}
                             />
-                            <Input placeholder="주소"/>
-                            <Input placeholder="상세주소"/>
+                            <Input
+                                placeholder="주소"
+                                name="address"
+                                value={address}
+                                onChange={onSetRegistProps}
+                            />
+                            <Input
+                                placeholder="상세주소"
+                                name="detailAddress"
+                                value={detailAddress}
+                                onChange={onSetRegistProps}
+                            />
                         </div>
                         <div className='email-input-wrapper'>
                             <Input
                                 label="E-mail"
                                 placeholder="이메일"
+                                name="emailId"
+                                value={emailId}
+                                onChange={onSetRegistProps}
                             />
                             <div className='at'>@</div>
                             <Input
                                 type="text"
                                 name='emailDomain'
+                                value={emailDomain}
+                                onChange={onSetRegistProps}
                             />
                             <SelectBox
                                 name='emailDomainBox'
                                 options={emailOptions}
+                                onChange={domainChange}
                             />
                         </div>
                         <div className='email-input-wrapper'>
                             <Input
-                                label="소속교구"
-                                placeholder="소속교구"
+                                label="계좌번호"
+                                placeholder="계좌번호"
+                                name="accountNo"
+                                value={accountNo}
+                                onChange={onSetRegistProps}
                             />
                             <Input
-                                label="차량번호"
-                                placeholder="차량번호"
+                                label="거래은행"
+                                placeholder="거래은행"
+                                name="backNm"
+                                value={backNm}
+                                onChange={onSetRegistProps}
                             />
                         </div>
                     </div> 
