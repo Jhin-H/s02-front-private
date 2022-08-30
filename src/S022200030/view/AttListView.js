@@ -1,11 +1,11 @@
 import React from "react";
-import TablePractice from   "../../common/elements/TablePractice"
+import Table from   "../../common/elements/Table"
 
 const AttListView = () => {
     
     return (
       
-        <TablePractice/>
+        <Table/>
  
     );
 }
