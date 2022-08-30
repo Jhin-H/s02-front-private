@@ -99,27 +99,17 @@ function GroupSearchView (props) {
     const onSetSearchProps = (e) => {
         groupStore.setSearchProps(e.target.name, e.target.value);
     }
-    // 조건에 따른 검색 결과 출력 (체크박스 초기화)
+    // 조건에 따른 검색 결과 출력
     const clickImgSecondaryBtn = () => {
         groupStore.onSetGroupList();
     }
-    // 선택된 항목 삭제 (체크박스 초기화)
-    const clickDelete = async () => {
-        try {
-            if(groupStore.checkedOrgIdList.length > 0) {
-                if(window.confirm(groupStore.checkedOrgIdList.length+'개의 항목을 삭제하시겠습니까?')) {
-                    await groupStore.deleteGroupList();
-                } else {
-                    return;
-                }
-            } else {
-                alert('삭제할 항목을 선택해주세요.');
-            }
-        } catch (error) {
-            alert('삭제할 항목을 선택해주세요.');
-        }
+    // 단체 등록
+    const clickRegist = async () => {
+        groupStore.initSelectGroup(); // 이전에 조회된 단체 정보 초기화
+        groupStore.initRegistProps(); // 이전 등록창에 작성되었던 데이터 초기화
+        openModal();
     }
-    // 선택된 항목이 하나일 경우에 모달창 오픈
+    // 단체 수정
     const clickUpdate = async () => {
         try {
             if(groupStore.checkedOrgIdList.length === 1) {
@@ -136,13 +126,23 @@ function GroupSearchView (props) {
             alert('다시 시도해 주세요.');
         }
     }
-    // 등록 모달창 오픈
-    const clickRegist = async () => {
-        groupStore.initSelectGroup(); // 이전에 조회된 단체 정보 초기화
-        groupStore.initRegistProps(); // 이전 등록창에 작성되었던 데이터 초기화
-        openModal();
+    // 단체 삭제
+    const clickDelete = async () => {
+        try {
+            if(groupStore.checkedOrgIdList.length > 0) {
+                if(window.confirm(groupStore.checkedOrgIdList.length+'개의 항목을 삭제하시겠습니까?')) {
+                    await groupStore.deleteGroupList();
+                } else {
+                    return;
+                }
+            } else {
+                alert('삭제할 항목을 선택해주세요.');
+            }
+        } catch (error) {
+            alert('삭제할 항목을 선택해주세요.');
+        }
     }
-    // 조회 리스트 엑셀로 다운로드
+    // 조회 리스트 엑셀 다운로드
     const clickDown = () => {
         let groupData = [];
         for(let i=0;i<groupStore.groupList.length;i++) {

@@ -13,7 +13,7 @@ class MemberStore {
         fromDt: '',
         memberName: '',
         memberTp: '',
-        orgId : '',
+        orgId : '39',
         toDt: ''
     }
     get searchProps() {
@@ -27,16 +27,16 @@ class MemberStore {
     }
     // 멤버 등록 데이터
     @observable
-    _registMember = { // 회원구분, 부서, 소속교구, 차량번호
-        accountNo: "",
+    _registMember = {
+        accountNo: "", // 계좌번호
         address: "", // 주소
-        backNm: "",
+        backNm: "", // 거래은행
         birth: "", // 생년월일
         detailAddress: "", // 상세주소
         email: "", // 이메일
         hpNo: "", // 핸드폰
         memberName: "", // 이름
-        orgId: null,
+        orgId: null, // 세션에서 받아옴
         pwd: "", // 1234 하드코딩
         zipCode: "" // 우편번호
     }
@@ -82,15 +82,23 @@ class MemberStore {
         return this._requestResult
     }
 
+    // 입력된 검색 조건 변수에 할당
+    @action
+    setSearchProps(name, value) {
+        this._searchProps = {
+            ...this._searchProps,
+            [name]: value
+        }
+    }
     // 멤버리스트 검색 결과
     @action
     async getRetrieveMemList() {
         const res = await retrieveMemberList(
-            this._searchProps.fromDt,
-            this._searchProps.memberName,
-            this._searchProps.memberTp,
-            this._searchProps.orgId,
-            this._searchProps.toDt
+            this.searchProps.fromDt,
+            this.searchProps.memberName,
+            this.searchProps.memberTp,
+            this.searchProps.orgId,
+            this.searchProps.toDt
             );
         runInAction(() => {
             this._resultRetrieveMem = res;

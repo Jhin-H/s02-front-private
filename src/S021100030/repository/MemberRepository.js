@@ -3,11 +3,11 @@ import axios from 'axios';
 // 멤버 리스트 검색
 const retrieveMemberList = async (fDt, name, tp, id, tDt) => {
     const res = await axios.get('/rest/v1/s021100030/retrieve-member-list', {params: {
-        // fromDt: fDt,
-        // memberName: name,
-        // memberTp: tp,
-        // orgId : id,
-        // toDt: tDt
+        fromDt: fDt,
+        memberName: name,
+        memberTp: tp,
+        orgId : id,
+        toDt: tDt
     }});
     return res.data.data;
 }

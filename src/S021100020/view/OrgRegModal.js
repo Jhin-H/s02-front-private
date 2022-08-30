@@ -51,12 +51,12 @@ const emailOptions = [
 	{ value: "daum.net", name: "daum.net" },
 	{ value: "google.com", name: "google.com" }
 ];
-const SelectBox = (props) => {
+const SelectBox = ({label, options=[], ...props}) => {
     return (
         <SelectBoxContainer>
-            <label>{props.label}</label>
-            <select onChange={(e) => props.onChange(e)}>
-                {props.options.map((v) => (
+            <label>{label}</label>
+            <select {...props}>
+                {options.map((v) => (
                     <option key={v.value} value={v.value}>{v.name}</option>
                 ))}
             </select>
@@ -164,7 +164,7 @@ function OrgRegModal({ closeModal, store }) {
             }
         }
     }
-
+    // 등록 실행
     const onClickSubmit = async () => {
         // 항목 비어있으면 채우라는 경고창 출력, 항목마다 조건 주기, 조건 만족하면 등록/수정 실행
         if(groupStore.selectGroup.orgId) {
