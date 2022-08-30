@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { observer, inject } from "mobx-react";
 import OrgRegModal from "../../S021100020/view/OrgRegModal";
 import useModal from "../../common/hooks/useModal";
 import ImgPrimaryBtn from  "../../common/elements/ImgPrimaryBtn";
 import "../../common/css/searchBox.css";
 import styled from 'styled-components';
+import * as XLSX from "xlsx";
+import FileSaver from "file-saver";
 
 const Container = styled.div`  
     position:relative;
@@ -89,6 +91,9 @@ function GroupSearchView (props) {
 
     const { groupStore } = props;
     const { ModalPortal, closeModal, openModal } = useModal();
+    const excelFileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+    const excelFileExtension = '.xlsx';
+    const excelFileName = '단체 리스트 조회 결과';
 
     // 검색 조건의 입력값을 store에 저장
     const onSetSearchProps = (e) => {
@@ -137,8 +142,37 @@ function GroupSearchView (props) {
         groupStore.initRegistProps(); // 이전 등록창에 작성되었던 데이터 초기화
         openModal();
     }
+    // 조회 리스트 엑셀로 다운로드
+    const clickDown = () => {
+        let groupData = [];
+        for(let i=0;i<groupStore.groupList.length;i++) {
+            groupData.push(
+                {'번호': groupStore.groupList[i].orgId,
+                '단체명': groupStore.groupList[i].orgName,
+                '대표자': groupStore.groupList[i].memberName,
+                '연락처': groupStore.groupList[i].hpNo,
+                '대표자 메일': groupStore.groupList[i].email,
+                '회원 수': groupStore.groupList[i].memberCnt});
+        }
+        const workSheet = XLSX.utils.json_to_sheet([
+            {'번호': '', '단체명': '', '대표자': '', '연락처': '', '대표자 메일': '', '회원 수': ''}
+        ]);
+        workSheet["!cols"] = [{wpx: 50}, {wpx: 100}, {wpx: 75}, {wpx: 100}, {wpx: 150}, {wpx: 50}]
+        XLSX.utils.sheet_add_json(
+            workSheet,
+            groupData,
+            {origin: 0}
+        ); // workSheet에서 한 줄 아래(origin:-1)에 데이터 추가
+        const workBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workBook, workSheet, 'memberData');
+        const excelButter = XLSX.write(workBook, { bookType: 'xlsx', type: 'array'});
+        const excelFile = new Blob([excelButter], { type: excelFileType });
+        FileSaver.saveAs(excelFile, excelFileName + excelFileExtension);
+    }
 
-    groupStore.onSetGroupList();
+    useEffect(() => {
+        groupStore.onSetGroupList();
+    });
 
     return (
         <div className="searchBox">
@@ -154,7 +188,7 @@ function GroupSearchView (props) {
                     <ImgPrimaryBtn iconText={"삭제"} onClick={clickDelete}/>
                 </div>
                 <div className="iconWrap-right">
-                    <ImgPrimaryBtn iconText={"다운로드"}/>
+                    <ImgPrimaryBtn iconText={"다운로드"} onClick={clickDown}/>
                 </div>
             </div>
             <ModalPortal>

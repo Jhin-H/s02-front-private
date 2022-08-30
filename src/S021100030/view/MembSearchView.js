@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { observer, inject } from "mobx-react";
 import Input from '../../common/elements/Input';
 import ImgPrimaryBtn from  "../../common/elements/ImgPrimaryBtn"
@@ -14,7 +14,6 @@ const Container = styled.div`
     flex-direction:column;
     margin-right: 10px;
     margin-bottom: 10px;
-
     .ImgSecondaryBtn {
         display: inline-block;
         background-color: rgb(50, 190, 166);
@@ -68,7 +67,6 @@ const Container = styled.div`
         filter:opacity(0.35);
         cursor: pointer;
     }
-   
 `;
 const SelectBoxContainer = styled.div`
     position:relative;
@@ -84,21 +82,14 @@ const SelectBoxContainer = styled.div`
         text-align: center;
         margin-right:10px;
         margin-bottom:0;
-        color: #ababab;
     }
     label {
         position:absolute;
         top:-35px;
     }
-
-    
 `;
 
 const SelectBox = (props) => {
-    useEffect(() => {
-        props.store.retrieveCd();
-    });
-    console.log(props.store.resCode);
     return (
         <SelectBoxContainer>
             <select>
@@ -124,12 +115,12 @@ const MembSearchView = (props) => {
     
     const { memberStore } = props;
     const { ModalPortal, closeModal, openModal } = useModal();
+    const [excelData, setExcelData] = useState([]);
     const excelFileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
     const excelFileExtension = '.xlsx';
     const excelFileName = '회원관리 양식';
-    
+
     const clickImgSecondaryBtn = () => {
-        console.log('clickSearch');
         memberStore.getRetrieveMemList();
     }
     const clickRegist = async () => {
@@ -149,23 +140,27 @@ const MembSearchView = (props) => {
             {'': '* Start', '회원명': '', 'e-mail': '', '핸드폰 번호': '', '생년월일': '', '우편번호': '', '주소': '', '상세주소': '', '계좌번호': '', '거래은행': ''},
             {'': '', '회원명': '', 'e-mail': '', '핸드폰 번호': '', '생년월일': '', '우편번호': '', '주소': '', '상세주소': '', '계좌번호': '', '거래은행': ''},
             {'': '', '회원명': '', 'e-mail': '', '핸드폰 번호': '', '생년월일': '', '우편번호': '', '주소': '', '상세주소': '', '계좌번호': '', '거래은행': ''},
+            {'': '', '회원명': '', 'e-mail': '', '핸드폰 번호': '', '생년월일': '', '우편번호': '', '주소': '', '상세주소': '', '계좌번호': '', '거래은행': ''},
             {'': '* End', '회원명': '', 'e-mail': '', '핸드폰 번호': '', '생년월일': '', '우편번호': '', '주소': '', '상세주소': '', '계좌번호': '', '거래은행': ''}
         ]);
+        workSheet["!cols"] = [{wpx: 50}, {wpx: 75}, {wpx: 150}, {wpx: 100}, {wpx: 75}, {wpx: 75}, {wpx: 150}, {wpx: 150}, {wpx: 150}, {wpx: 75}]
         XLSX.utils.sheet_add_aoa(
             workSheet,
             [
                 [''],
                 ['* 입력 방법 가이드'],
                 ['- 필수입력 항목: 회원명, e-mail, 핸드폰번호'],
-                ['- 핸드폰번호: 11자리 숫자만 입력(01012341234)'],
-                ['- 생년월일: 8자리 숫자만 입력(19901231)'],
-                ['- e-mail: \'@\'를 포함해서 입력(email@naver.com)'],
-                ['- *Start가 있는 2행 B열부터 입력'],
-                ['- *End가 있는 행으로 마무리, 필요한 데이터는 중간에 행 삽입으로 추가해주세요']
+                ['- 추가입력 항목: 생년월일, 우편번호, 주소, 상세주소, 계죄번호, 거래은행'],
+                ['- 핸드폰번호: 11자리 숫자만 입력 (01012341234)'],
+                ['- 생년월일: 8자리 숫자만 입력 (19901231)'],
+                ['- e-mail: \'@\'를 포함해서 입력 (email@naver.com)'],
+                ['- * Start가 있는 2행 B열부터 입력'],
+                ['- * End가 있는 행으로 마무리, 필요한 데이터는 중간에 행 삽입으로 추가해주세요']
             ],
             {origin: -1}
         ); // workSheet에서 한 줄 아래(origin:-1)에 데이터 추가
-        const workBook = {Sheets: { memberData: workSheet }, SheetNames: ['memberData']};
+        const workBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workBook, workSheet, 'memberData');
         const excelButter = XLSX.write(workBook, { bookType: 'xlsx', type: 'array'});
         const excelFile = new Blob([excelButter], { type: excelFileType });
         FileSaver.saveAs(excelFile, excelFileName + excelFileExtension);
@@ -179,14 +174,24 @@ const MembSearchView = (props) => {
             let wb = XLSX.read(fileData, {type : 'binary'});
             wb.SheetNames.forEach((sheetName) => {
                 let rowObj = XLSX.utils.sheet_to_json(wb.Sheets[sheetName]);
-                console.log(JSON.stringify(rowObj));
-                // 여기서 rowObj를 이용해서 데이터를 등록
+                for(let i=0; i<rowObj.length; i++) {
+                    if (rowObj[i].회원명) {
+                        setExcelData(excelData.push(rowObj[i]));
+                    }
+                }
+                console.log(rowObj);
+                console.log(excelData);
             });
         };
         reader.readAsBinaryString(input.files[0]);
     }
-    
-    memberStore.getRetrieveMemList();
+
+    useEffect(() => {
+        memberStore.getRetrieveMemList();
+        memberStore.retrieveCd();
+    },[memberStore]);
+
+    useEffect(() => {}, [memberStore.resCode]); // useEffect 실행 후, 한 번 더 렌더링
 
     return (
             <div className="searchBox">
@@ -219,16 +224,15 @@ const MembSearchView = (props) => {
                     <div className="iconWrap-right">
                         <ImgPrimaryBtn iconText={"다운로드"} onClick={clickDown}/>
                         <div className="uploadIcon">
-                            <label for="inputFile">
-                                <ImgPrimaryBtn iconText={"업로드"} onClick={clickUp}/>
+                            <label htmlFor="inputFile">
+                                <ImgPrimaryBtn iconText={"업로드"}/>
                             </label>
                             <input type='file'
                             id='inputFile' 
                             style={{display:"none"}}
+                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                             onChange={(e) => clickUp(e)}/>
                         </div>
-                        <Input/>
-                           
                     </div>
                 </div>
                 <ModalPortal>
