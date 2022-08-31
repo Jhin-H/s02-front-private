@@ -7,6 +7,9 @@ import styled from 'styled-components';
 import * as XLSX from "xlsx";
 import FileSaver from "file-saver";
 import { toJS } from "mobx";
+import "../../common/css/searchBox.css"
+
+
 
 const Container = styled.div`  
     position:relative;
@@ -66,6 +69,9 @@ const Container = styled.div`
         filter:opacity(0.35);
         cursor: pointer;
     }
+    .wave{
+        margin-left : 0;
+    }
 `;
 const SelectBoxContainer = styled.div`
     position:relative;
@@ -83,6 +89,7 @@ const SelectBoxContainer = styled.div`
         margin-right:10px;
         margin-bottom:0;
     }
+    
 `;
 
 const ImgSecondaryBtn = ( {...props} ) => {
@@ -263,8 +270,8 @@ const MembSearchView = (props) => {
                         accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                         onChange={(e) => clickUp(e)}/>
                     </div>
-                    <ImgPrimaryBtn iconText={"다운로드"} onClick={clickDownList}/>
-                    <ImgPrimaryBtn iconText={"다운로드"} onClick={clickDownForm}/>
+                    <ImgPrimaryBtn iconText={"양식받기"} onClick={clickDownList}/>
+                    <ImgPrimaryBtn iconText={"목록받기"} onClick={clickDownForm}/>
                 </div>
             </div>
             <ModalPortal>

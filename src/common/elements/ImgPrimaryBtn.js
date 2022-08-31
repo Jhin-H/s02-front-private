@@ -54,7 +54,9 @@ const ImgPrimaryBtn = ({ iconText, ...props}) => {
       imgSrc = '../img/adminPlus.svg' ;
     }else if(iconText === '운영자삭제'){
       imgSrc = '../img/adminDelete.svg' ;
-    }else if(iconText === '다운로드'){
+    }else if(iconText === '양식받기'){
+      imgSrc = '../img/downloadIcon.svg' ;
+    }else if(iconText === '목록받기'){
       imgSrc = '../img/downloadIcon.svg' ;
     }else if(iconText === '업로드'){
       imgSrc = '../img/uploadIcon.svg' ;
@@ -63,6 +65,12 @@ const ImgPrimaryBtn = ({ iconText, ...props}) => {
     }
     else if(iconText === '비용등록'){
       imgSrc = '../img/costIcon.svg' ;
+    }
+    else if(iconText === '출석등록'){
+      imgSrc = '../img/adminPlus.svg' ;
+    }
+    else if(iconText === '출석취소'){
+      imgSrc = '../img/adminDelete.svg' ;
     }
     
 

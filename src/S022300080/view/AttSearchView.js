@@ -3,6 +3,8 @@ import "../../common/css/searchBox.css"
 import ImgSecondaryBtn from "../../common/elements/ImgSecondaryBtn";
 import Input from '../../common/elements/Input';
 import styled from 'styled-components';
+import SelectBox from '../../common/elements/SelectBox'
+import ImgPrimaryBtn from "../../common/elements/ImgPrimaryBtn";
 
 const SelectBoxContainer = styled.div`
     position:relative;
@@ -26,7 +28,7 @@ const SelectBoxContainer = styled.div`
     }
 `;
 
-const SelectBox = ({ ...props }) => {
+const AttSelectBox = ({ ...props }) => {
     return (
         <SelectBoxContainer>
             <select className="selectBox">
@@ -44,27 +46,25 @@ const AttSearchView = () => {
     return (
             <div className="searchBox">
                 <div className="layer1">
-                <Input
-                    type="date"
-                    data-placeholder="출입일시(From)"
-                    required aria-required="true"
-                />
-                <div className="wave">~</div>
-                <Input
-                    type="date"
-                    data-placeholder="출입일시(To)"
-                    required aria-required="true"
-                />
-                <Input
-                    placeholder="행사명"
-                />
-                <Input
-                    placeholder="회원명"
-                />
-                <SelectBox
-                    placeholder="출석여부"
-                />
-                <ImgSecondaryBtn/>
+               
+                    <Input
+                        placeholder="이름"
+                    />
+                    <Input
+                        placeholder="핸드폰 번호"
+                    />
+                    <SelectBox
+                        placeholder="행사명"
+                    />
+                    <AttSelectBox
+                        placeholder="출석여부"
+                    />
+                    <ImgSecondaryBtn/>
+                </div>
+
+                <div className="layer2">
+                    <ImgPrimaryBtn iconText={'출석등록'}/>
+                    <ImgPrimaryBtn iconText={'출석취소'}/>
                 </div>
             </div>
     );

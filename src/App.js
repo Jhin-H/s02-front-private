@@ -2,12 +2,12 @@ import './App.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom' ;
 import Navbar from './common/Navbar';
 import Home from './page/Home';
-import Attend from './page/Attend';
+import Attend from './S022300080/container/AttContainer';
 import Member from './page/Member';
 import Sign from './page/Sign';
 import Budget from './page/Budget';
 import Group from './page/Group';
-import Event from './page/Event';
+import Event from './S022300040/container/EventContainer';
 import DepartReg from './S021100070/container/DepartRegContainer';
 import Popup from './S021100050/view/SearchMember';
 

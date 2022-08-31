@@ -30,7 +30,9 @@ function EventSearchView (props) {
                     <Input
                         placeholder="운영자"
                     />
-                    <SelectBox/><ImgSecondaryBtn/>
+                    <SelectBox
+                    placeholder="출석여부"/>
+                    <ImgSecondaryBtn/>
                 </div>
                 <div className="layer2">
                    

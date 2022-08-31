@@ -41,6 +41,12 @@ const EvtRegModalWrapper = styled.div`
     select{
         margin-right: 30px;
     }
+
+    .wave{
+        font-size: 19px;
+        margin-left: -20px;
+        margin-right: 10px;
+    }
 `;
 
 function EvtRegModal({closeModal})   {
