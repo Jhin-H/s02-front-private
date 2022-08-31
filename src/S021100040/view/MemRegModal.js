@@ -128,6 +128,7 @@ function MemRegModal({ closeModal, store }) {
     }
 
     const onClickSubmit = async () => {
+        await memberStore.registerMem();
         closeModal();
     }
     const openPostCodeModal = () => {
