@@ -95,7 +95,7 @@ function GroupListView (props) {
                                     className="checkbox"
                                     id={Number(key)+'box'}
                                     value={value.orgId}
-                                    onChange={(e) => {checkedHandler(e);}}
+                                    onChange={(e) => {checkedHandler(e)}}
                                     >
                                 </input>
                             </td>

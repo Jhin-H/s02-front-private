@@ -9,8 +9,6 @@ import FileSaver from "file-saver";
 import { toJS } from "mobx";
 import "../../common/css/searchBox.css"
 
-
-
 const Container = styled.div`  
     position:relative;
     display: flex;

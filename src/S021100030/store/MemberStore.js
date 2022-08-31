@@ -137,7 +137,7 @@ class MemberStore {
         }
     }
 
-    // 멤버리스트 검색 결과
+    // 멤버리스트 검색
     @action
     async getRetrieveMemList() {
         const res = await retrieveMemberList(
