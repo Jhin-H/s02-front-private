@@ -166,9 +166,26 @@ function MemRegModal({ closeModal, store }) {
                             />
                         </div>
                         <div className="hp-input-wrapper">
-                            <Input type="text" label="핸드폰" name="firstHpNo" value={firstHpNo} onChange={onSetRegistProps}/>
-                            <Input type="text" name="middleHpNo" value={middleHpNo} onChange={onSetRegistProps}/>
-                            <Input type="text" name="lastHpNo" value={lastHpNo} onChange={onSetRegistProps}/>
+                            <Input
+                                type="text"
+                                label="핸드폰" 
+                                placeholder="핸드폰"
+                                name="firstHpNo"
+                                value={firstHpNo}
+                                onChange={onSetRegistProps}
+                            />
+                            <Input
+                                type="text"
+                                name="middleHpNo"
+                                value={middleHpNo}
+                                onChange={onSetRegistProps}
+                            />
+                            <Input
+                                type="text"
+                                name="lastHpNo"
+                                value={lastHpNo}
+                                onChange={onSetRegistProps}
+                            />
                         </div>
                         <div className="address-input-wrapper">
                             <Input

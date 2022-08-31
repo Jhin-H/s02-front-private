@@ -240,6 +240,7 @@ function OrgRegModal({ closeModal, store }) {
                             <div className="hp-input-wrapper">
                                 <Input
                                     label="핸드폰"
+                                    placeholder="핸드폰"
                                     type="text"
                                     name='firstHpNo'
                                     value={firstHpNo}

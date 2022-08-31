@@ -79,12 +79,9 @@ const SelectBoxContainer = styled.div`
         height: 26.5px;
         font-size: 15px;
         text-align: center;
+        color: #ababab;
         margin-right:10px;
         margin-bottom:0;
-    }
-    label {
-        position:absolute;
-        top:-35px;
     }
 `;
 
@@ -101,7 +98,7 @@ const SelectBox = ( {store, ...props} ) => {
     return (
         <SelectBoxContainer>
             <select {...props}>
-                <option key='all' value=''>전체 보기</option>
+                <option key='all' style={{color: '#ababab'}}>회원 구분</option>
                 {store.resCode.map((v) => (
                     <option key={v.cdV} value={v.cdV}>{v.cdVMeaning}</option>
                 ))}
