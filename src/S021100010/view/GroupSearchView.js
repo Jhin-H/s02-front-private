@@ -70,17 +70,17 @@ const Container = styled.div`
     }
 `;
 
-const Input = ({...props}) => {
+const Input = ( {...props} ) => {
     return (
         <Container>
             <input {...props}/>
         </Container>
     )
 };
-const ImgSecondaryBtn = (props) => {
+const ImgSecondaryBtn = ( {...props} ) => {
     return (
         <Container>
-            <div className="ImgSecondaryBtn" onClick={props.onClick}>
+            <div className="ImgSecondaryBtn" {...props}>
                 <i className="fa-solid fa-magnifying-glass"></i>
             </div>
         </ Container>

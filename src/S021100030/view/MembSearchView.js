@@ -79,16 +79,16 @@ const SelectBoxContainer = styled.div`
         height: 26.5px;
         font-size: 15px;
         text-align: center;
-        color: #ababab;
+        color: #333;
         margin-right:10px;
         margin-bottom:0;
     }
 `;
 
-const ImgSecondaryBtn = (props) => {
+const ImgSecondaryBtn = ( {...props} ) => {
     return (
         <Container>
-            <div className="ImgSecondaryBtn" onClick={props.onClick}>
+            <div className="ImgSecondaryBtn" {...props}>
                 <i className="fa-solid fa-magnifying-glass"></i>
             </div>
         </ Container>
@@ -98,7 +98,7 @@ const SelectBox = ( {store, ...props} ) => {
     return (
         <SelectBoxContainer>
             <select {...props}>
-                <option key='all' style={{color: '#ababab'}}>회원 구분</option>
+                <option key='all'>회원 구분</option>
                 {store.resCode.map((v) => (
                     <option key={v.cdV} value={v.cdV}>{v.cdVMeaning}</option>
                 ))}
@@ -133,7 +133,6 @@ const MembSearchView = (props) => {
     }
     // 검색 조건에 따른 리스트 조회
     const clickImgSecondaryBtn = () => {
-        console.log('조회 버튼 Click');
         memberStore.getRetrieveMemList();
     }
     // 회원 등록
@@ -158,7 +157,6 @@ const MembSearchView = (props) => {
     }
     // 회원 등록 양식 업로드
     const clickUp = (e) => {
-        console.log('upload');
         let input = e.target;
         let reader = new FileReader();
         reader.onload = () => {
@@ -175,7 +173,11 @@ const MembSearchView = (props) => {
                 console.log(excelData);
             });
         };
-        reader.readAsBinaryString(input.files[0]);
+        try {
+            reader.readAsBinaryString(input.files[0]);
+        } catch (error) {
+            console.log(error);
+        }
     }
     // 조회 리스트 엑셀 다운로드
     const clickDownList = () => {
@@ -226,7 +228,7 @@ const MembSearchView = (props) => {
                 <Input
                     type="date"
                     name="fromDt"
-                    data-placeholder="조회일자(From)"
+                    data-placeholder="등록일자(From)"
                     required aria-required="true"
                     onChange={onSetSearchProps}
                 />
@@ -234,7 +236,7 @@ const MembSearchView = (props) => {
                 <Input
                     type="date"
                     name="toDt"
-                    data-placeholder="조회일자(To)"
+                    data-placeholder="등록일자(To)"
                     required aria-required="true"
                     onChange={onSetSearchProps}
                 />
