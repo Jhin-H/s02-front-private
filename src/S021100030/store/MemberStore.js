@@ -25,6 +25,12 @@ class MemberStore {
     get resultRetrieveMem() {
         return this._resultRetrieveMem;
     }
+    // 체크된 멤버 memberId, memberTp
+    @observable
+    _checkedMemId = []
+    get checkedMemId() {
+        return this._checkedMemId;
+    }
     // 멤버 등록 데이터
     @observable
     _registMember = {
@@ -94,6 +100,10 @@ class MemberStore {
             ...this._searchProps,
             [name]: value
         }
+    }
+    // 체크된 멤버를 변수에 할당
+    setCheckedMemId(listProps) {
+        this._checkedMemId = listProps;
     }
     // 등록 폼에 입력된 데이터 할당
     @action

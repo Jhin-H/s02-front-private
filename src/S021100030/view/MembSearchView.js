@@ -268,8 +268,8 @@ const MembSearchView = (props) => {
                         accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                         onChange={(e) => clickUp(e)}/>
                     </div>
-                    <ImgPrimaryBtn iconText={"양식받기"} onClick={clickDownList}/>
-                    <ImgPrimaryBtn iconText={"목록받기"} onClick={clickDownForm}/>
+                    <ImgPrimaryBtn iconText={"목록받기"} onClick={clickDownList}/>
+                    <ImgPrimaryBtn iconText={"양식받기"} onClick={clickDownForm}/>
                 </div>
             </div>
             <ModalPortal>

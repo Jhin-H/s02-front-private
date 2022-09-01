@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { observer, inject } from "mobx-react";
 import styled from 'styled-components';
 
@@ -42,32 +42,79 @@ const Container = styled.div`
     }
 `;
 
-const MembListView = () => {
+const MembListView = (props) => {
+
+    const { memberStore } = props;
+    const [checkedList, setCheckedList] = useState(new Set());
+    const [checkedListProps, setCheckedListProps] = useState(new Set());
+
+    // 체크리스트 핸들러
+    const checkedHandler = ({ target }) => {
+        checkedItemHandler(target.checked, target.value);
+        target.checked = checkedList.has(target.value) ? true : false;
+    }
+    const checkedItemHandler = (checked, value) => {
+        let checkedListVal = {memberTp: 'memberTp', memberId: value};
+        if (checked) {
+            checkedList.add(value);
+            checkedListProps.add(checkedListVal);
+            memberStore.setCheckedMemId(Array.from(checkedListProps));
+        } else if (!checked && checkedList.has(value)) {
+            checkedList.delete(value);
+            checkedListProps.forEach((v) => {
+                if (v.memberId === value) {
+                    checkedListProps.delete(v);
+                }
+            });
+            memberStore.setCheckedMemId(Array.from(checkedListProps));
+        }
+    };
+
+    useEffect(() => { // 리스트가 렌더링되면 선택 초기화
+        for (let i=0; i<memberStore.resultRetrieveMem.length; i++) {
+            document.getElementById(i+"box").checked = false;
+        }
+        checkedList.clear();
+        checkedListProps.clear();
+        setCheckedList(checkedList);
+        setCheckedListProps(checkedListProps);
+        memberStore.setCheckedMemId(Array.from(checkedListProps));
+    }, [memberStore.resultRetrieveMem, memberStore, checkedList, checkedListProps])
+
     return (
         <Container>
             <table>
                 <thead>
                     <tr>
-                        <th>선택</th>
-                        <th>번호</th>
-                        <th>이름</th>
-                        <th>회원구분</th>
-                        <th>등록일자</th>
-                        <th>연락처</th>
-                        <th>이메일</th>
-                        <th>모바일 접속일자</th>
+                        <th className="tableData">선택</th>
+                        <th className="tableData">번호</th>
+                        <th className="tableData">이름</th>
+                        <th className="tableData">회원구분</th>
+                        <th className="tableData">등록일자</th>
+                        <th className="tableData">연락처</th>
+                        <th className="tableData">이메일</th>
+                        <th className="tableData">모바일 접속일자</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input className="checkbox" type="checkbox"></input></td>
-                        <td>1</td>
-                        <td>John Doe</td>
-                        <td>대표</td>
-                        <td>2022-01-01</td>
-                        <td>010-0000-0000</td>
-                        <td>randomemail@naver.com</td>
-                        <td>2022-01-01</td>
+                        <td className="tableData">
+                            <input
+                                type="checkbox"
+                                className="checkbox"
+                                // id={Number(key)+'box'}
+                                // value={value.memberId}
+                                onChange={(e) => {checkedHandler(e)}}
+                                >
+                            </input>
+                        </td>
+                        <td className="tableData">1</td>
+                        <td className="tableData">John Doe</td>
+                        <td className="tableData">대표</td>
+                        <td className="tableData">2022-01-01</td>
+                        <td className="tableData">010-0000-0000</td>
+                        <td className="tableData">randomemail@naver.com</td>
+                        <td className="tableData">2022-01-01</td>
                     </tr>
                 </tbody>
             </table>

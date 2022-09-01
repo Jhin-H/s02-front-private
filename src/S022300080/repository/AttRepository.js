@@ -17,7 +17,7 @@ const registerAttend = async (registData) => {
 }
 // 출석 삭제
 const deleteAttend = async (deleteData) => {
-    const res = await axios.post('/rest/v1/s022300080/register-attend', deleteData);
+    const res = await axios.post('/rest/v1/s022300080/delete-attend', deleteData);
     return res.status;
 }
 

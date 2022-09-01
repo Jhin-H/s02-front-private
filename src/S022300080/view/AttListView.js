@@ -62,12 +62,14 @@ const AttListView = (props) => {
         if (checked) {
             checkedList.add(value);
             checkedListProps.add(checkedListVal);
-            console.log(checkedListProps);
             attStore.setCheckedMemId(Array.from(checkedListProps));
         } else if (!checked && checkedList.has(value)) {
             checkedList.delete(value);
-            checkedListProps.delete(checkedListVal);
-            console.log(checkedListProps);
+            checkedListProps.forEach((v) => {
+                if (v.memberId === value) {
+                    checkedListProps.delete(v);
+                }
+            });
             attStore.setCheckedMemId(Array.from(checkedListProps));
         }
     };
@@ -119,10 +121,9 @@ const AttListView = (props) => {
                             <td className="tableData">{key+1}</td>
                             <td className="tableData">{value.eventNm}</td>
                             <td className="tableData">{value.memberName}</td>
-                            <td className="tableData">{value.hpNo}</td>
+                            <td className="tableData">{value.hpNo.substring(0, 3)+'-'+value.hpNo.substring(3, 7)+'-'+value.hpNo.substring(7)}</td>
                             <td className="tableData">{value.enterDate}</td>
                             <td className="tableData">{value.enterDate ? 'Y' : 'N'}</td>
-                            <td className="tableData" style={{display:'none'}}>{value.memberId}</td>
                         </tr>
                     ))}
                 </tbody>
