@@ -38,6 +38,10 @@ const Container = styled.div`
     line-height: 30px;
     margin-left: 10px;
   }
+
+  :active .ImgSecondaryBtn{
+    background-color: rgb(25, 128, 111);
+  }
 `;
 
 const ImgSecondaryBtn = ( { ...props } ) => {
