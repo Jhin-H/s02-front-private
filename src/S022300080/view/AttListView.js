@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { observer, inject } from "mobx-react";
 import styled from 'styled-components';
+import moment from "moment";
 
 const Container = styled.div`
     table {
@@ -122,7 +123,7 @@ const AttListView = (props) => {
                             <td className="tableData">{value.eventNm}</td>
                             <td className="tableData">{value.memberName}</td>
                             <td className="tableData">{value.hpNo.substring(0, 3)+'-'+value.hpNo.substring(3, 7)+'-'+value.hpNo.substring(7)}</td>
-                            <td className="tableData">{value.enterDate}</td>
+                            <td className="tableData">{value.enterDate ? moment(value.enterDate).format('YYYY-MM-DD HH:mm') : '-'}</td>
                             <td className="tableData">{value.enterDate ? 'Y' : 'N'}</td>
                         </tr>
                     ))}

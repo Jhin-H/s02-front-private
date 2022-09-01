@@ -64,15 +64,15 @@ const SelectBox = ( { options = [], ...props } ) => {
     return (
         <SelectBoxContainer>
             <select className="selectBox" {...props}>
-                {options.map((v) => (
-                    <option key={v} value={v}>{v}</option>
+                {options.map((v, k) => (
+                    <option key={k} value={v.value}>{v.name}</option>
                 ))}
             </select>
         </SelectBoxContainer>
     )
 };
 
-const selectEventOp = [6];
+const selectEventOp = [{name:'행사명', value:''}, {name:'행사명_Test_4444', value:6}];
 const selectAttendOp = [{name:'출석 현황', value:'all'}, {name:'참석', value:'y'}, {name:'불참', value:'n'}];
 
 const AttSearchView = (props) => {
@@ -90,6 +90,7 @@ const AttSearchView = (props) => {
     const clickImgSecondaryBtn = async () => {
         await attStore.getAttendList();
     }
+    // 참석 등록
     const clickRegist = async () => {
         console.log('등록 클릭')
         if (attStore.checkedMemId.length > 0) {
@@ -107,6 +108,7 @@ const AttSearchView = (props) => {
             alert('회원을 선택해 주세요');
         }
     }
+    // 참석 취소
     const clickDelete = async () => {
         if (attStore.checkedMemId.length > 0) {
             await attStore.delAttend();

@@ -11,7 +11,7 @@ class AttStore {
     @observable
     _searchProps = {
         enterFlag: '',
-        eventId: 6,
+        eventId: null,
         hpNo : '',
         memberName: ''
     }
