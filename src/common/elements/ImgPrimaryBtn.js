@@ -2,8 +2,8 @@ import React from "react";
 import styled from 'styled-components';
 
 const Icon = styled.div`
-    width: 52px;
-    height: 52px;
+    width: 54px;
+    height: 54px;
     border-radius: 100%;
     border: 1.5px solid #333;
     margin-right: 10px;
@@ -54,6 +54,8 @@ const ImgPrimaryBtn = ({ iconText, ...props}) => {
       imgSrc = '../img/adminPlus.svg' ;
     }else if(iconText === '운영자삭제'){
       imgSrc = '../img/adminDelete.svg' ;
+    }else if(iconText === '다운로드'){
+      imgSrc = '../img/downloadIcon.svg' ;
     }else if(iconText === '양식받기'){
       imgSrc = '../img/downloadIcon.svg' ;
     }else if(iconText === '목록받기'){
