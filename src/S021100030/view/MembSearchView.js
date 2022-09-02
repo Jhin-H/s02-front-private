@@ -6,8 +6,7 @@ import useModal from "../../common/hooks/useModal";
 import styled from 'styled-components';
 import * as XLSX from "xlsx";
 import FileSaver from "file-saver";
-import { toJS } from "mobx";
-import "../../common/css/searchBox.css"
+import "../../common/css/searchBox.css";
 
 const Container = styled.div`  
     position:relative;
@@ -128,13 +127,12 @@ const MembSearchView = (props) => {
     const [excelData, setExcelData] = useState([]);
     const excelFileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
     const excelFileExtension = '.xlsx';
-    const excelFileName = '회원관리 양식';
+    const excelFileName = '회원목록 조회 정보';
+    const excelFileName2 = '회원관리 양식';
 
     // 검색 조건의 입력값을 store에 저장
     const onSetSearchProps = (e) => {
         memberStore.setSearchProps(e.target.name, e.target.value);
-        console.log(e.target.name+":"+e.target.value);
-        console.log(toJS(memberStore.searchProps));
     }
     // 검색 조건에 따른 리스트 조회
     const clickImgSecondaryBtn = () => {
@@ -153,6 +151,13 @@ const MembSearchView = (props) => {
     }
     // 회원 삭제
     const clickDelete = async () => {
+        if(memberStore.checkedMemId.length === 1) {
+            memberStore.deleteMem();
+        } else if(memberStore.checkedMemId.length === 0) {
+            alert('삭제할 항목을 선택해주세요.');
+        } else {
+            alert('삭제할 항목은 하나만 선택할 수 있습니다.');
+        }
     }
     // 운영자 등록
     const clickRegistR = async () => {
@@ -186,7 +191,30 @@ const MembSearchView = (props) => {
     }
     // 조회 리스트 엑셀 다운로드
     const clickDownList = () => {
-        console.log('조회된 리스트 다운로드');
+        let memberData = [];
+        for(let i=0;i<memberStore.resultRetrieveMem.length;i++) {
+            memberData.push(
+                {'이름': memberStore.resultRetrieveMem[i].memberName,
+                '회원구분': memberStore.resultRetrieveMem[i].memberTpNm,
+                '등록일자': '-',
+                '연락처': memberStore.resultRetrieveMem[i].hpNo,
+                '이메일': memberStore.resultRetrieveMem[i].email,
+                '모바일 접속일자': memberStore.resultRetrieveMem[i].mobileLoginDate});
+        }
+        const workSheet = XLSX.utils.json_to_sheet([
+            {'이름': '', '회원구분': '', '등록일자': '', '연락처': '', '이메일': '', '모바일 접속일자': ''}
+        ]);
+        workSheet["!cols"] = [{wpx: 75}, {wpx: 75}, {wpx: 75}, {wpx: 100}, {wpx: 150}, {wpx: 150}]
+        XLSX.utils.sheet_add_json(
+            workSheet,
+            memberData,
+            {origin: 0}
+        ); // workSheet에서 한 줄 아래(origin:-1)에 데이터 추가
+        const workBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workBook, workSheet, 'memberData');
+        const excelButter = XLSX.write(workBook, { bookType: 'xlsx', type: 'array'});
+        const excelFile = new Blob([excelButter], { type: excelFileType });
+        FileSaver.saveAs(excelFile, excelFileName + excelFileExtension);
     }
     // 회원 등록 양식 다운로드
     const clickDownForm = () => {
@@ -217,15 +245,18 @@ const MembSearchView = (props) => {
         XLSX.utils.book_append_sheet(workBook, workSheet, 'memberData');
         const excelButter = XLSX.write(workBook, { bookType: 'xlsx', type: 'array'});
         const excelFile = new Blob([excelButter], { type: excelFileType });
-        FileSaver.saveAs(excelFile, excelFileName + excelFileExtension);
+        FileSaver.saveAs(excelFile, excelFileName2 + excelFileExtension);
     }
 
     useEffect(() => {
         memberStore.getRetrieveMemList();
         memberStore.retrieveCd();
+        console.log('useEffect1');
     },[memberStore]);
-
-    useEffect(() => {}, [memberStore.resCode]); // useEffect 실행 후, 한 번 더 렌더링
+    
+    useEffect(() => {
+        console.log('useEffect2');
+    }, [memberStore, memberStore.resCode]); // useEffect 실행 후, 한 번 더 렌더링
 
     return (
         <div className="searchBox">

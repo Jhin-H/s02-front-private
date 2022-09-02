@@ -63,12 +63,7 @@ class AttStore {
     // 출석 현황 검색
     @action
     async getAttendList() {
-        const res = await attendList(
-            this.searchProps.enterFlag,
-            this.searchProps.eventId,
-            this.searchProps.hpNo,
-            this.searchProps.memberName
-            );
+        const res = await attendList(this.searchProps);
         runInAction(() => {
             if (this.attendBool === 'all') {
                 this._resultAttendList = res;

@@ -52,7 +52,7 @@ const AttListView = (props) => {
     const [checkedList, setCheckedList] = useState(new Set());
     const [checkedListProps, setCheckedListProps] = useState(new Set());
     const [eventId, setEventId] = useState();
-
+    
     // 체크리스트 핸들러
     const checkedHandler = ({ target }) => {
         checkedItemHandler(target.checked, target.value);

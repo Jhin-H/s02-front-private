@@ -54,15 +54,14 @@ const MembListView = (props) => {
         target.checked = checkedList.has(target.value) ? true : false;
     }
     const checkedItemHandler = (checked, value) => {
-        let checkedListVal = {memberTp: 'memberTp', memberId: value};
         if (checked) {
             checkedList.add(value);
-            checkedListProps.add(checkedListVal);
+            checkedListProps.add({'memberId': value.split(',')[0], 'memberTp': value.split(',')[1]});
             memberStore.setCheckedMemId(Array.from(checkedListProps));
         } else if (!checked && checkedList.has(value)) {
             checkedList.delete(value);
             checkedListProps.forEach((v) => {
-                if (v.memberId === value) {
+                if (v.memberId === value.split(',')[0]) {
                     checkedListProps.delete(v);
                 }
             });
@@ -97,25 +96,27 @@ const MembListView = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td className="tableData">
-                            <input
-                                type="checkbox"
-                                className="checkbox"
-                                // id={Number(key)+'box'}
-                                // value={value.memberId}
-                                onChange={(e) => {checkedHandler(e)}}
-                                >
-                            </input>
-                        </td>
-                        <td className="tableData">1</td>
-                        <td className="tableData">John Doe</td>
-                        <td className="tableData">대표</td>
-                        <td className="tableData">2022-01-01</td>
-                        <td className="tableData">010-0000-0000</td>
-                        <td className="tableData">randomemail@naver.com</td>
-                        <td className="tableData">2022-01-01</td>
-                    </tr>
+                    {memberStore.resultRetrieveMem.map((value, key) => (
+                        <tr key={key}>
+                            <td className="tableData">
+                                <input
+                                    type="checkbox"
+                                    className="checkbox"
+                                    id={Number(key)+'box'}
+                                    value={value.memberId + ',' + value.memberTp}
+                                    onChange={(e) => {checkedHandler(e)}}
+                                    >
+                                </input>
+                            </td>
+                            <td className="tableData">{key+1}</td>
+                            <td className="tableData">{value.memberName}</td>
+                            <td className="tableData">{value.memberTpNm}</td>
+                            <td className="tableData"> - </td>
+                            <td className="tableData">{value.hpNo.substring(0, 3)+'-'+value.hpNo.substring(3, 7)+'-'+value.hpNo.substring(7)}</td>
+                            <td className="tableData">{value.email}</td>
+                            <td className="tableData">{value.mobileLoginDate}</td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </Container>

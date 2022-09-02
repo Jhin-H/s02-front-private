@@ -126,6 +126,7 @@ class GroupStore {
                 ...this._registGroup,
                 'email': this.registGroup.emailId + '@' + this.registGroup.emailDomain
             }
+            console.log(this.registGroup.email);
             await this.emailCheck(this.registGroup.email);
         }
     }
@@ -218,7 +219,7 @@ class GroupStore {
     // 검색 조건에 따른 단체 리스트 출력
     @action
     async onSetGroupList() {
-        const res = await getGroupList(this.search.orgName, this.search.memberName);
+        const res = await getGroupList(this.search);
         runInAction(() => {
             this._groupList = res;
         });

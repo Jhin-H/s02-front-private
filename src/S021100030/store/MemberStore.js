@@ -13,7 +13,7 @@ class MemberStore {
         fromDt: '',
         memberName: '',
         memberTp: '',
-        orgId : '39',
+        orgId : 39,
         toDt: ''
     }
     get searchProps() {
@@ -36,7 +36,7 @@ class MemberStore {
     _registMember = {
         accountNo: "", // 계좌번호
         address: "", // 주소
-        backNm: "", // 거래은행
+        bankNm: "", // 거래은행
         birth: "", // 생년월일
         detailAddress: "", // 상세주소
         email: "", // 이메일
@@ -130,7 +130,7 @@ class MemberStore {
         this._registMember = {
             accountNo: "",
             address: "",
-            backNm: "",
+            bankNm: "",
             birth: "",
             detailAddress: "",
             email: "",
@@ -150,13 +150,8 @@ class MemberStore {
     // 멤버리스트 검색
     @action
     async getRetrieveMemList() {
-        const res = await retrieveMemberList(
-            this.searchProps.fromDt,
-            this.searchProps.memberName,
-            this.searchProps.memberTp,
-            this.searchProps.orgId,
-            this.searchProps.toDt
-            );
+        const res = await retrieveMemberList();
+        // const res = await retrieveMemberList(this.searchProps);
         runInAction(() => {
             this._resultRetrieveMem = res;
         });
@@ -205,7 +200,8 @@ class MemberStore {
     @action
     async deleteMem() {
         // 선택한 항목의 memberId 매개변수로 넣기
-        const res = await deleteMember();
+        const props = {'memberId': this.checkedMemId[0].memberId}
+        const res = await deleteMember(props);
         runInAction(() => {
             this._requestResult = res;
             if (this.requestResult === 200) {

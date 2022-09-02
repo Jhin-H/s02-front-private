@@ -1,14 +1,18 @@
 import axios from 'axios';
 
 // 멤버 리스트 검색
-const retrieveMemberList = async (fDt, name, tp, id, tDt) => {
-    const res = await axios.get('/rest/v1/s021100030/retrieve-member-list', {params: {
-        fromDt: fDt,
-        memberName: name,
-        memberTp: tp,
-        orgId : id,
-        toDt: tDt
-    }});
+// const retrieveMemberList = async (fDt, name, tp, id, tDt) => {
+//     const res = await axios.get('/rest/v1/s021100030/retrieve-member-list', {params: {
+//         fromDt: fDt,
+//         memberName: name,
+//         memberTp: tp,
+//         orgId : id,
+//         toDt: tDt
+//     }});
+//     return res.data.data;
+// } // 이거 왜 이거로 쏘면 데이터가 안나오냐ㅠ? 돌아뻐리겠네
+const retrieveMemberList = async () => {
+    const res = await axios.get('/rest/v1/s021100030/retrieve-member-list?fromDt=2022-01-01&memberName=&memberTp=&orgId=39&toDt=2022-12-31');
     return res.data.data;
 }
 // 멤버 등록

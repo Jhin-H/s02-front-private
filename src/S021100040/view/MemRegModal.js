@@ -85,7 +85,7 @@ function MemRegModal({ closeModal, store }) {
     const [emailId, setEmailId] = useState('');
     const [emailDomain, setEmailDomain] = useState('');
     const [accountNo, setAccountNo] = useState('');
-    const [backNm, setBackNm] = useState('');
+    const [bankNm, setBankNm] = useState('');
 
     // 입력 할 때, State에 파라미터 저장
     const typingText = (e) => {
@@ -111,8 +111,8 @@ function MemRegModal({ closeModal, store }) {
             setDetailAddress(e.target.value);
         } else if(e.target.name === 'accountNo') {
             setAccountNo(e.target.value);
-        } else if(e.target.name === 'backNm') {
-            setBackNm(e.target.value);
+        } else if(e.target.name === 'bankNm') {
+            setBankNm(e.target.value);
         }
     }
     // 직접 입력할 때, State에 저장된 데이터 Store로 보내기
@@ -241,8 +241,8 @@ function MemRegModal({ closeModal, store }) {
                             <Input
                                 label="거래은행"
                                 placeholder="거래은행"
-                                name="backNm"
-                                value={backNm}
+                                name="bankNm"
+                                value={bankNm}
                                 onChange={onSetRegistProps}
                             />
                         </div>
