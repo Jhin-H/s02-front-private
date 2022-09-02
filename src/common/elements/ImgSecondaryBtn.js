@@ -13,6 +13,9 @@ const Container = styled.div`
     line-height: 30px;
     margin-left: 10px;
   }
+  :active .ImgSecondaryBtn{
+    background-color: rgb(25, 128, 111);
+  }
 `;
 
 const ImgSecondaryBtn = () => {
@@ -21,7 +24,7 @@ const ImgSecondaryBtn = () => {
             <div className="ImgSecondaryBtn">
               <i className="fa-solid fa-magnifying-glass"></i>
             </div>
-        </ Container>
+        </Container>
     )
 };
 
