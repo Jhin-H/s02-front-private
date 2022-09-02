@@ -8,6 +8,8 @@ const SearchMemberContainer = styled.div`
     height: 100%;
     margin: 0 auto;
     position: relative;
+
+
     .closeBtn{
         position:absolute;
         top:30px;
@@ -57,12 +59,38 @@ const SearchMemberContainer = styled.div`
     .checkbox:checked{
         background-color: rgb(50, 190, 166);
     }
+    
+
+    .searchModal{
+        width:800px;
+        height:700px;
+        padding: 50px 0 0 0 ;
+        background-color: red;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+
+h1{
+    font-size: 41px;
+    font-weight: 200;
+}
+
+.closeBtn{
+
+    float: right;
+    margin-top: -60px;
+    font-size: 30px;
+    color: #747474;
+}
+
+
+
 `;
 
 function SearchMemModal()   {
     return (
         <div className="modalBg">
-        <div className='modalBox'>
+        <div className='searchModal'>
         <SearchMemberContainer>
             <div className="inner">
                 <h1>단체A</h1>
