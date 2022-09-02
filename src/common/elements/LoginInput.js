@@ -3,8 +3,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
 
-     
-.LoginInput {
+input{
     border-top: none;
     border-left: none;
     border-right: none;
@@ -20,20 +19,29 @@ const Container = styled.div`
 
 }
 
-::placeholder{
-
-font-size:12px;
-
+.icon-wrapper {
+    width:18px;
+    position:absolute;
+    top:4px;
+    right:0px;
+    filter:opacity(0.35);
+    cursor: pointer;
 }
+
+input::placeholder{
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 24px;
+        font-weight: 400;
+    }
 
     
 `;
 
-const LoginInput = () => {
+const LoginInput = ( {icon, ...props} ) => {
     return (
-        <Container>
-            <input className="LoginInput">
-            </input>
+        <Container iconExist={!!icon}>
+            <input {...props}/>
+            <div className="icon-wrapper">{icon}</div>
         </Container>
     )
 };

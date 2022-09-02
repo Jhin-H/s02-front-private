@@ -40,6 +40,13 @@ const HeaderContainer = styled.div`
     color:white;
     font-size: 18px;
   }
+  .loginWrap{
+    color:white;
+  }
+  
+  .fa-solid{
+    margin-right : 10px;
+  }
 
   .userProfile{
     width: 30px;
@@ -47,7 +54,6 @@ const HeaderContainer = styled.div`
     background-color: #ababab;
     border-radius: 100%;
     display: flex;
-    margin-right: 10px;
   }
 
   .userProfile > img{
@@ -57,7 +63,6 @@ const HeaderContainer = styled.div`
 
   .userName{
     display: inline-block;
-    margin-right: 2px;
   }
 
 
@@ -99,7 +104,11 @@ const Header = observer(() => {
             </div>
             <div className="user-wrap">
               {!authStore.authenticated 
-                ? <Link to="/SignIn"><div className="login"><i className="fa-solid fa-user"></i>로그인</div></Link>
+                ? <Link to="/SignIn" className='loginWrap'>
+                    <div className="login">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i>로그인
+                    </div>
+                  </Link>
                 : <>
                     <div className="userProfile"></div>
                     <p className="userName">{authStore.memberName}</p>

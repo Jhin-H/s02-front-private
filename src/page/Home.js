@@ -39,7 +39,18 @@ const Container = styled.div`
 }
 
 
-h1{
+.before{
+  font-size: 80pt;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+  margin: 20px 0 10px 0;
+  border: 3px solid white;
+  border-top: none;
+  border-bottom: none;
+}
+
+.after{
   font-size: 100pt;
   font-weight: 400;
   color: white;
@@ -48,8 +59,6 @@ h1{
   border: 3px solid white;
   border-top: none;
   border-bottom: none;
-  
-
 }
 
 .subTitle-top{
@@ -64,7 +73,7 @@ h1{
 
 
 .subTitle-bottom{
-  font-size: 1vw;
+  font-size: 1.3vw;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.9);
   text-align: center;
@@ -88,14 +97,26 @@ const Home = () =>{
 
                 <div className="inner">
                     
-
+                   
                     <div className="main-title-Wrap">
 
+                        {/* 로그인 전 보여질 문구 */}
                         <p className="subTitle-top">Welcome</p>
 
-                            <h1>환영합니다</h1>
+                            <h1 className='before'>출입관리시스템</h1>
 
                         <p className="subTitle-bottom">왼쪽의 메뉴에서 이동할 페이지를 선택하세요</p>
+
+
+
+                        {/* 로그인 후 보여질 문구 */}
+
+                        {/* <p className="subTitle-top">Welcome</p>
+
+                            <h1 className='after'>환영합니다</h1>
+
+                        <p className="subTitle-bottom">왼쪽의 메뉴에서 이동할 페이지를 선택하세요</p> */}
+                        
 
                     </div>
 

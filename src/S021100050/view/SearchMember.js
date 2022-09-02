@@ -60,28 +60,11 @@ const SearchMemberContainer = styled.div`
         background-color: rgb(50, 190, 166);
     }
     
-
-    .searchModal{
-        width:800px;
-        height:700px;
-        padding: 50px 0 0 0 ;
-        background-color: red;
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    h1{
+        font-size: 41px;
+        font-weight: 200;
     }
 
-
-h1{
-    font-size: 41px;
-    font-weight: 200;
-}
-
-.closeBtn{
-
-    float: right;
-    margin-top: -60px;
-    font-size: 30px;
-    color: #747474;
-}
 
 
 
@@ -90,77 +73,77 @@ h1{
 function SearchMemModal()   {
     return (
         <div className="modalBg">
-        <div className='searchModal'>
-        <SearchMemberContainer>
-            <div className="inner">
-                <h1>단체A</h1>
-                <div className='closeBtn'>
-                    <i className="fa-solid fa-xmark"></i>
-                </div>
-                    <div className='searchLayer'>
-                        <Input
-                            label='회원명'
-                            placeholder='회원명'
-                            />
-                        <ImgSecondaryBtn/>
+            <div className='searchMemModal'>
+                <SearchMemberContainer>
+                    <div className="inner">
+                        <h1>단체A</h1>
+                        <div className='closeBtn'>
+                            <i className="fa-solid fa-xmark"></i>
+                        </div>
+                            <div className='searchLayer'>
+                                <Input
+                                    label='회원명'
+                                    placeholder='회원명'
+                                    />
+                                <ImgSecondaryBtn/>
+                            </div>
+                        <div className='listWrap'>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th className='tableHead'>선택</th>
+                                    <th className="tableHead">번호</th>
+                                    <th className="tableHead">이름</th>
+                                    <th className="tableHead">핸드폰 번호</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td className='tableData'>
+                                        <input className="checkbox" type="checkbox"></input>
+                                    </td>
+                                    <td className="tableData">1</td>
+                                    <td className="tableData">대표자</td>
+                                    <td className="tableData">010-0000-0000</td>
+                                </tr>
+                                <tr>
+                                    <td className='tableData'>
+                                        <input className="checkbox" type="checkbox"></input>
+                                    </td>
+                                    <td className="tableData">2</td>
+                                    <td className="tableData">대표자</td>
+                                    <td className="tableData">010-0000-0000</td>
+                                </tr>
+                                <tr>
+                                    <td className='tableData'>
+                                        <input className="checkbox" type="checkbox"></input>
+                                    </td>
+                                    <td className="tableData">3</td>
+                                    <td className="tableData">대표자</td>
+                                    <td className="tableData">010-0000-0000</td>
+                                </tr>
+                                <tr>
+                                    <td className='tableData'>
+                                        <input className="checkbox" type="checkbox"></input>
+                                    </td>
+                                    <td className="tableData">4</td>
+                                    <td className="tableData">대표자</td>
+                                    <td className="tableData">010-0000-0000</td>
+                                </tr>
+                                <tr>
+                                    <td className='tableData'>
+                                        <input className="checkbox" type="checkbox"></input>
+                                    </td>
+                                    <td className="tableData">5</td>
+                                    <td className="tableData">대표자</td>
+                                    <td className="tableData">010-0000-0000</td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
                     </div>
-                <div className='listWrap'>
-                <table>
-                    <thead>
-                        <tr>
-                            <th className='tableHead'>선택</th>
-                            <th className="tableHead">번호</th>
-                            <th className="tableHead">이름</th>
-                            <th className="tableHead">핸드폰 번호</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td className='tableData'>
-                                <input className="checkbox" type="checkbox"></input>
-                            </td>
-                            <td className="tableData">1</td>
-                            <td className="tableData">대표자</td>
-                            <td className="tableData">010-0000-0000</td>
-                        </tr>
-                        <tr>
-                            <td className='tableData'>
-                                <input className="checkbox" type="checkbox"></input>
-                            </td>
-                            <td className="tableData">2</td>
-                            <td className="tableData">대표자</td>
-                            <td className="tableData">010-0000-0000</td>
-                        </tr>
-                        <tr>
-                            <td className='tableData'>
-                                <input className="checkbox" type="checkbox"></input>
-                            </td>
-                            <td className="tableData">3</td>
-                            <td className="tableData">대표자</td>
-                            <td className="tableData">010-0000-0000</td>
-                        </tr>
-                        <tr>
-                            <td className='tableData'>
-                                <input className="checkbox" type="checkbox"></input>
-                            </td>
-                            <td className="tableData">4</td>
-                            <td className="tableData">대표자</td>
-                            <td className="tableData">010-0000-0000</td>
-                        </tr>
-                        <tr>
-                            <td className='tableData'>
-                                <input className="checkbox" type="checkbox"></input>
-                            </td>
-                            <td className="tableData">5</td>
-                            <td className="tableData">대표자</td>
-                            <td className="tableData">010-0000-0000</td>
-                        </tr>
-                    </tbody>
-                    </table>
-                </div>
+                </SearchMemberContainer>
             </div>
-            </SearchMemberContainer>
-        </div>
         </div>
     );
 }

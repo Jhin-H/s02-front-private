@@ -18,6 +18,13 @@
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+.searchMemModal{
+    width:800px;
+    height:600px;
+    padding: 50px 0 0 0 ;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 .wrap{
 
     width: 90%;
