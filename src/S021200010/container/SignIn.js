@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { API_SIGN_IN } from '../repository/SignInRepository';
 import LoginInput from '../../common/elements/LoginInput';
-import {ReactComponent as pwInputIcon} from '../../common/lib/img/VisibleEyeIcon.svg';
+import {ReactComponent as PwInputIcon} from '../../common/lib/img/VisibleEyeIcon.svg';
 
 
 const SignInContainer = styled.div`
@@ -74,8 +74,6 @@ h1{
     background: #106658;
 }
 
-
-
 .img-wrap>img:hover{
     opacity: 0.8;
     
@@ -121,7 +119,7 @@ const SignIn = observer(() => {
                     type="password"
                     placeholder="비밀번호를 입력해주세요"
                     onChange={onChangePassword}
-                    icon={<pwInputIcon/>}
+                    icon={<PwInputIcon/>}
                     />
                 
                     <div className="loginBtn" onClick={onClickSignIn}>

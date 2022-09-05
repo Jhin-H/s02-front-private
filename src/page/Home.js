@@ -103,9 +103,10 @@ const Home = () =>{
                         {/* 로그인 전 보여질 문구 */}
                         <p className="subTitle-top">Welcome</p>
 
-                            <h1 className='before'>출입관리시스템</h1>
+                            <h1 className='before'>토브 : TOV</h1>
 
                         <p className="subTitle-bottom">왼쪽의 메뉴에서 이동할 페이지를 선택하세요</p>
+                        {/* <p className="subTitle-bottom">간결한 비용처리 / 편리한 출결관리</p> */}
 
 
 

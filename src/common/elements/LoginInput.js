@@ -2,6 +2,8 @@ import React from "react";
 import styled from 'styled-components';
 
 const Container = styled.div`
+position : relative;
+
 
 input{
     border-top: none;
@@ -34,14 +36,21 @@ input::placeholder{
         font-weight: 400;
     }
 
-    
+.iconWrapper {
+    width:18px;
+    position:absolute;
+    top:8px;
+    right:10px;
+    filter:opacity(0.35);
+    cursor: pointer;
+}
 `;
 
 const LoginInput = ( {icon, ...props} ) => {
     return (
         <Container iconExist={!!icon}>
             <input {...props}/>
-            <div className="icon-wrapper">{icon}</div>
+            <div className="iconWrapper">{icon}</div>
         </Container>
     )
 };
