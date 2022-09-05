@@ -41,7 +41,7 @@ const Container = styled.div`
 
 .before{
   font-size: 80pt;
-  font-weight: 400;
+  font-weight: 600;
   color: white;
   text-align: center;
   margin: 20px 0 10px 0;
@@ -61,14 +61,17 @@ const Container = styled.div`
   border-bottom: none;
 }
 
+.bold{
+    font-size : 30px;
+    font-weight : 600;
+}
+
 .subTitle-top{
   font-size: 1vw;
   font-weight: 200;
   color: rgba(255, 255, 255, 0.9);
   text-align: center;
   letter-spacing: 2em;
-
-
 }
 
 
@@ -103,10 +106,10 @@ const Home = () =>{
                         {/* 로그인 전 보여질 문구 */}
                         <p className="subTitle-top">Welcome</p>
 
-                            <h1 className='before'>토브 : TOV</h1>
+                            <h1 className='before'>토 브 : T O V</h1>
 
-                        <p className="subTitle-bottom">왼쪽의 메뉴에서 이동할 페이지를 선택하세요</p>
-                        {/* <p className="subTitle-bottom">간결한 비용처리 / 편리한 출결관리</p> */}
+                            <p className="subTitle-bottom">
+                                <span className="bold">간결한</span> 비용처리 / <span className="bold">편리한</span> 출결관리</p>
 
 
 
